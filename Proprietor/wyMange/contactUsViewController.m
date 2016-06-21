@@ -30,9 +30,9 @@
 -(void)loadContentView:(NSString*)tel contact:(NSString*)names address:(NSString*)addrstr{
     CGFloat lineHeigh=40;
     UIView * contentVc=[[UIView alloc]initWithFrame:CGRectMake(0, 0, fDeviceWidth, 130)];
-    _telImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 10, 16)];
-    _contactImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 12+lineHeigh, 10, 16)];
-    _addrImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 12+lineHeigh*2, 10, 16)];
+    _telImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 16, 16)];
+    _contactImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 12+lineHeigh, 16, 16)];
+    _addrImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, 12+lineHeigh*2, 16, 16)];
     
     _telImg.image=[UIImage imageNamed:@"tel"];
     _contactImg.image=[UIImage imageNamed:@"contact"];

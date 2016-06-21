@@ -9,7 +9,9 @@
 #import "MyInfoViewController.h"
 #import "AppDelegate.h"
 #import "PublicDefine.h"
-@interface MyInfoViewController ()
+#import "stdCellVc.h"
+
+@interface MyInfoViewController ()<StdButtonDelegate>
 
 @end
 
@@ -18,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadTopNav];
+    [self loadMyInfoView];
     // Do any additional setup after loading the view.
 }
 
@@ -57,14 +60,41 @@
     }
     return self;
 }
-/*
-#pragma mark - Navigation
+-(void)loadMyInfoView{
+    CGRect firstCG=CGRectMake(0, TopSeachHigh+30, fDeviceWidth, 50);
+    stdCellVc *personInfo=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"personInfo" titleName:@"个人信息" txtName:@"" lookImg:@"rightArrow" sendid:1];
+    [self.view addSubview:personInfo];
+    
+    firstCG=CGRectMake(0, TopSeachHigh+100, fDeviceWidth, 50);
+    stdCellVc *room=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"room" titleName:@"房屋信息" txtName:@"" lookImg:@"rightArrow" sendid:2];
+    [self.view addSubview:room];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    firstCG=CGRectMake(0, TopSeachHigh+151, fDeviceWidth, 50);
+    stdCellVc *carRoom=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"carRoom" titleName:@"车库信息" txtName:@"" lookImg:@"rightArrow" sendid:3];
+    [self.view addSubview:carRoom];
+
+     firstCG=CGRectMake(0, TopSeachHigh+202, fDeviceWidth, 50);
+    stdCellVc *carSeat=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"carSeat" titleName:@"车位信息" txtName:@"" lookImg:@"rightArrow" sendid:4];
+    [self.view addSubview:carSeat];
+    
+    firstCG=CGRectMake(0, TopSeachHigh+272, fDeviceWidth, 50);
+    stdCellVc *qianFee=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"fee" titleName:@"欠费信息" txtName:@"" lookImg:@"rightArrow" sendid:5];
+    [self.view addSubview:qianFee];
+    
+    firstCG=CGRectMake(0, TopSeachHigh+342, fDeviceWidth, 50);
+    stdCellVc *about=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"about" titleName:@"关于物业通" txtName:@"" lookImg:@"rightArrow" sendid:6];
+    [self.view addSubview:about];
+
+
+    personInfo.stdDelegate=self;
+    room.stdDelegate=self;
+    carRoom.stdDelegate=self;
+    carSeat.stdDelegate=self;
+    qianFee.stdDelegate=self;
+    about.stdDelegate=self;
 }
-*/
 
+-(void)clickDelegate:(NSInteger)sendId{
+    NSLog(@"%ld",(long)sendId);
+}
 @end
