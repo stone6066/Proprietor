@@ -106,6 +106,21 @@
 		89D282B01D13A18300B91834 /* yshoul@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D282AA1D13A18300B91834 /* yshoul@2x.png */; };
 		89D282B11D13A18300B91834 /* yshoul@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D282AB1D13A18300B91834 /* yshoul@3x.png */; };
 		89D282B41D13C72700B91834 /* addRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D282B31D13C72700B91834 /* addRepairViewController.m */; };
+		89EAF3D81D1A12ED005AFA05 /* personInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF3D71D1A12ED005AFA05 /* personInfoViewController.m */; };
+		89EAF3DE1D1A22F9005AFA05 /* personInfoMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF3DD1D1A22F9005AFA05 /* personInfoMode.m */; };
+		89EAF42F1D1A5D9E005AFA05 /* RADataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF42B1D1A5D9E005AFA05 /* RADataObject.m */; };
+		89EAF4301D1A5D9E005AFA05 /* RATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF42D1D1A5D9E005AFA05 /* RATableViewCell.m */; };
+		89EAF4311D1A5D9E005AFA05 /* RATableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF42E1D1A5D9E005AFA05 /* RATableViewCell.xib */; };
+		89EAF4381D1A6A5F005AFA05 /* tragle.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4321D1A6A5F005AFA05 /* tragle.png */; };
+		89EAF4391D1A6A5F005AFA05 /* tragle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4331D1A6A5F005AFA05 /* tragle@2x.png */; };
+		89EAF43A1D1A6A5F005AFA05 /* tragle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4341D1A6A5F005AFA05 /* tragle@3x.png */; };
+		89EAF43B1D1A6A5F005AFA05 /* verticalLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4351D1A6A5F005AFA05 /* verticalLine.png */; };
+		89EAF43C1D1A6A5F005AFA05 /* verticalLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4361D1A6A5F005AFA05 /* verticalLine@2x.png */; };
+		89EAF43D1D1A6A5F005AFA05 /* verticalLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4371D1A6A5F005AFA05 /* verticalLine@3x.png */; };
+		89EAF4401D1A7C4F005AFA05 /* HomeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF43F1D1A7C4F005AFA05 /* HomeInfoViewController.m */; };
+		89EAF4431D1A873B005AFA05 /* carRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF4421D1A873B005AFA05 /* carRoomViewController.m */; };
+		89EAF4461D1A8807005AFA05 /* carSeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF4451D1A8807005AFA05 /* carSeatViewController.m */; };
+		89EAF4491D1A8937005AFA05 /* feeNeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF4481D1A8937005AFA05 /* feeNeedViewController.m */; };
 		89EFB70B1D18D38F00B83BEF /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB6FC1D18D38F00B83BEF /* about.png */; };
 		89EFB70C1D18D38F00B83BEF /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB6FD1D18D38F00B83BEF /* about@2x.png */; };
 		89EFB70D1D18D38F00B83BEF /* about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB6FE1D18D38F00B83BEF /* about@3x.png */; };
@@ -286,6 +301,29 @@
 		89D282AB1D13A18300B91834 /* yshoul@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yshoul@3x.png"; sourceTree = "<group>"; };
 		89D282B21D13C72700B91834 /* addRepairViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addRepairViewController.h; sourceTree = "<group>"; };
 		89D282B31D13C72700B91834 /* addRepairViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addRepairViewController.m; sourceTree = "<group>"; };
+		89EAF3D61D1A12ED005AFA05 /* personInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personInfoViewController.h; sourceTree = "<group>"; };
+		89EAF3D71D1A12ED005AFA05 /* personInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personInfoViewController.m; sourceTree = "<group>"; };
+		89EAF3DC1D1A22F9005AFA05 /* personInfoMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personInfoMode.h; sourceTree = "<group>"; };
+		89EAF3DD1D1A22F9005AFA05 /* personInfoMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personInfoMode.m; sourceTree = "<group>"; };
+		89EAF42A1D1A5D9E005AFA05 /* RADataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RADataObject.h; sourceTree = "<group>"; };
+		89EAF42B1D1A5D9E005AFA05 /* RADataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RADataObject.m; sourceTree = "<group>"; };
+		89EAF42C1D1A5D9E005AFA05 /* RATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RATableViewCell.h; sourceTree = "<group>"; };
+		89EAF42D1D1A5D9E005AFA05 /* RATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RATableViewCell.m; sourceTree = "<group>"; };
+		89EAF42E1D1A5D9E005AFA05 /* RATableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RATableViewCell.xib; sourceTree = "<group>"; };
+		89EAF4321D1A6A5F005AFA05 /* tragle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tragle.png; sourceTree = "<group>"; };
+		89EAF4331D1A6A5F005AFA05 /* tragle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tragle@2x.png"; sourceTree = "<group>"; };
+		89EAF4341D1A6A5F005AFA05 /* tragle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tragle@3x.png"; sourceTree = "<group>"; };
+		89EAF4351D1A6A5F005AFA05 /* verticalLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = verticalLine.png; sourceTree = "<group>"; };
+		89EAF4361D1A6A5F005AFA05 /* verticalLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "verticalLine@2x.png"; sourceTree = "<group>"; };
+		89EAF4371D1A6A5F005AFA05 /* verticalLine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "verticalLine@3x.png"; sourceTree = "<group>"; };
+		89EAF43E1D1A7C4F005AFA05 /* HomeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInfoViewController.h; sourceTree = "<group>"; };
+		89EAF43F1D1A7C4F005AFA05 /* HomeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInfoViewController.m; sourceTree = "<group>"; };
+		89EAF4411D1A873B005AFA05 /* carRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carRoomViewController.h; sourceTree = "<group>"; };
+		89EAF4421D1A873B005AFA05 /* carRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carRoomViewController.m; sourceTree = "<group>"; };
+		89EAF4441D1A8807005AFA05 /* carSeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carSeatViewController.h; sourceTree = "<group>"; };
+		89EAF4451D1A8807005AFA05 /* carSeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carSeatViewController.m; sourceTree = "<group>"; };
+		89EAF4471D1A8937005AFA05 /* feeNeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = feeNeedViewController.h; sourceTree = "<group>"; };
+		89EAF4481D1A8937005AFA05 /* feeNeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = feeNeedViewController.m; sourceTree = "<group>"; };
 		89EFB6FC1D18D38F00B83BEF /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		89EFB6FD1D18D38F00B83BEF /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		89EFB6FE1D18D38F00B83BEF /* about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@3x.png"; sourceTree = "<group>"; };
@@ -368,6 +406,7 @@
 		8930804E1D1286AD00960923 /* wyMange */ = {
 			isa = PBXGroup;
 			children = (
+				89EAF3D51D1A12B4005AFA05 /* myInfo */,
 				8930804F1D1286D100960923 /* repairViewController.h */,
 				893080501D1286D100960923 /* repairViewController.m */,
 				893080521D1286F700960923 /* complainViewController.h */,
@@ -396,6 +435,12 @@
 		895C34151D0E7CDC009F793D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				89EAF4321D1A6A5F005AFA05 /* tragle.png */,
+				89EAF4331D1A6A5F005AFA05 /* tragle@2x.png */,
+				89EAF4341D1A6A5F005AFA05 /* tragle@3x.png */,
+				89EAF4351D1A6A5F005AFA05 /* verticalLine.png */,
+				89EAF4361D1A6A5F005AFA05 /* verticalLine@2x.png */,
+				89EAF4371D1A6A5F005AFA05 /* verticalLine@3x.png */,
 				89EFB7481D192E0D00B83BEF /* date.png */,
 				89EFB7491D192E0D00B83BEF /* date@2x.png */,
 				89EFB74A1D192E0D00B83BEF /* date@3x.png */,
@@ -571,6 +616,7 @@
 		897B2FE01D0509B900218E4E /* Proprietor */ = {
 			isa = PBXGroup;
 			children = (
+				89EAF4291D1A5D9E005AFA05 /* Ratree */,
 				89EFB71D1D18D43C00B83BEF /* stdPackect */,
 				89D282A21D139B0A00B91834 /* model */,
 				89D2829E1D13812300B91834 /* tableCell */,
@@ -631,8 +677,39 @@
 			children = (
 				89D282A31D139B4000B91834 /* repairTableModel.h */,
 				89D282A41D139B4000B91834 /* repairTableModel.m */,
+				89EAF3DC1D1A22F9005AFA05 /* personInfoMode.h */,
+				89EAF3DD1D1A22F9005AFA05 /* personInfoMode.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		89EAF3D51D1A12B4005AFA05 /* myInfo */ = {
+			isa = PBXGroup;
+			children = (
+				89EAF3D61D1A12ED005AFA05 /* personInfoViewController.h */,
+				89EAF3D71D1A12ED005AFA05 /* personInfoViewController.m */,
+				89EAF43E1D1A7C4F005AFA05 /* HomeInfoViewController.h */,
+				89EAF43F1D1A7C4F005AFA05 /* HomeInfoViewController.m */,
+				89EAF4411D1A873B005AFA05 /* carRoomViewController.h */,
+				89EAF4421D1A873B005AFA05 /* carRoomViewController.m */,
+				89EAF4441D1A8807005AFA05 /* carSeatViewController.h */,
+				89EAF4451D1A8807005AFA05 /* carSeatViewController.m */,
+				89EAF4471D1A8937005AFA05 /* feeNeedViewController.h */,
+				89EAF4481D1A8937005AFA05 /* feeNeedViewController.m */,
+			);
+			path = myInfo;
+			sourceTree = "<group>";
+		};
+		89EAF4291D1A5D9E005AFA05 /* Ratree */ = {
+			isa = PBXGroup;
+			children = (
+				89EAF42A1D1A5D9E005AFA05 /* RADataObject.h */,
+				89EAF42B1D1A5D9E005AFA05 /* RADataObject.m */,
+				89EAF42C1D1A5D9E005AFA05 /* RATableViewCell.h */,
+				89EAF42D1D1A5D9E005AFA05 /* RATableViewCell.m */,
+				89EAF42E1D1A5D9E005AFA05 /* RATableViewCell.xib */,
+			);
+			path = Ratree;
 			sourceTree = "<group>";
 		};
 		89EFB71D1D18D43C00B83BEF /* stdPackect */ = {
@@ -764,14 +841,17 @@
 				895C348A1D0E80F8009F793D /* assortment_selected.png in Resources */,
 				89D282B11D13A18300B91834 /* yshoul@3x.png in Resources */,
 				895C34901D0E80F8009F793D /* discovery_selected.png in Resources */,
+				89EAF43A1D1A6A5F005AFA05 /* tragle@3x.png in Resources */,
 				895C34991D0E80F8009F793D /* myInfo.png in Resources */,
 				89EFB73E1D192B3300B83BEF /* card@3x.png in Resources */,
 				89EFB7461D192B3300B83BEF /* wy@2x.png in Resources */,
 				895C34A01D0E80F8009F793D /* shopCar@2x.png in Resources */,
 				895C34621D0E80F0009F793D /* seachBgd@3x.png in Resources */,
+				89EAF43D1D1A6A5F005AFA05 /* verticalLine@3x.png in Resources */,
 				893356761D17BE3E00B85B1C /* addr.png in Resources */,
 				89EFB73D1D192B3300B83BEF /* card@2x.png in Resources */,
 				893356691D17BAE500B85B1C /* noticeList@3x.png in Resources */,
+				89EAF4381D1A6A5F005AFA05 /* tragle.png in Resources */,
 				895C349C1D0E80F8009F793D /* myInfo_selected.png in Resources */,
 				895C341D1D0E7CDC009F793D /* backImg.png in Resources */,
 				89EFB70E1D18D38F00B83BEF /* carRoom.png in Resources */,
@@ -780,6 +860,7 @@
 				89D282AD1D13A18300B91834 /* nshoul@2x.png in Resources */,
 				89EFB72E1D191A8100B83BEF /* personInfo@2x.png in Resources */,
 				895C34231D0E7CDC009F793D /* logBtn@3x.png in Resources */,
+				89EAF43B1D1A6A5F005AFA05 /* verticalLine.png in Resources */,
 				8933567C1D17BE3E00B85B1C /* tel.png in Resources */,
 				895C34A31D0E80F8009F793D /* shopCar_selected@2x.png in Resources */,
 				895C34601D0E80F0009F793D /* seachBgd.png in Resources */,
@@ -811,6 +892,7 @@
 				895C34981D0E80F8009F793D /* home_selected@3x.png in Resources */,
 				895C34961D0E80F8009F793D /* home_selected.png in Resources */,
 				895C349E1D0E80F8009F793D /* myInfo_selected@3x.png in Resources */,
+				89EAF4311D1A5D9E005AFA05 /* RATableViewCell.xib in Resources */,
 				89EFB7161D18D38F00B83BEF /* fee@3x.png in Resources */,
 				89EFB7401D192B3300B83BEF /* notice@2x.png in Resources */,
 				895C34A41D0E80F8009F793D /* shopCar_selected@3x.png in Resources */,
@@ -854,6 +936,7 @@
 				895C34661D0E80F0009F793D /* topLogo@2x.png in Resources */,
 				895C345D1D0E80F0009F793D /* scan.png in Resources */,
 				895C34671D0E80F0009F793D /* topLogo@3x.png in Resources */,
+				89EAF43C1D1A6A5F005AFA05 /* verticalLine@2x.png in Resources */,
 				89EFB7121D18D38F00B83BEF /* carSeat@2x.png in Resources */,
 				895C341F1D0E7CDC009F793D /* backImg@3x.png in Resources */,
 				89EFB7411D192B3300B83BEF /* notice@3x.png in Resources */,
@@ -868,6 +951,7 @@
 				893356681D17BAE500B85B1C /* noticeList@2x.png in Resources */,
 				89EFB7281D18D7FD00B83BEF /* rightArrow@2x.png in Resources */,
 				895C34951D0E80F8009F793D /* home@3x.png in Resources */,
+				89EAF4391D1A6A5F005AFA05 /* tragle@2x.png in Resources */,
 				895C341E1D0E7CDC009F793D /* backImg@2x.png in Resources */,
 				895C34561D0E80F0009F793D /* bar_back.png in Resources */,
 				895C345F1D0E80F0009F793D /* scan@3x.png in Resources */,
@@ -946,6 +1030,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89EAF3D81D1A12ED005AFA05 /* personInfoViewController.m in Sources */,
 				897B2FE91D0509B900218E4E /* ViewController.m in Sources */,
 				897B2FEF1D0509B900218E4E /* Proprietor.xcdatamodeld in Sources */,
 				895C34401D0E7F84009F793D /* MyInfoViewController.m in Sources */,
@@ -955,15 +1040,22 @@
 				893356631D17B7A400B85B1C /* addComplainViewController.m in Sources */,
 				895C34341D0E7EC9009F793D /* StdRootController.m in Sources */,
 				893080541D1286F700960923 /* complainViewController.m in Sources */,
+				89EAF4431D1A873B005AFA05 /* carRoomViewController.m in Sources */,
+				89EAF4301D1A5D9E005AFA05 /* RATableViewCell.m in Sources */,
 				893080511D1286D100960923 /* repairViewController.m in Sources */,
+				89EAF3DE1D1A22F9005AFA05 /* personInfoMode.m in Sources */,
 				89EFB7231D18D43C00B83BEF /* stdCellVc.m in Sources */,
 				8930805A1D12872300960923 /* contactUsViewController.m in Sources */,
+				89EAF4401D1A7C4F005AFA05 /* HomeInfoViewController.m in Sources */,
 				893080571D12870500960923 /* noticeViewController.m in Sources */,
 				89D282A51D139B4000B91834 /* repairTableModel.m in Sources */,
 				89D282A11D13817100B91834 /* ListTableViewCell.m in Sources */,
 				895C343A1D0E7F23009F793D /* WyMangerViewController.m in Sources */,
 				897B2FE61D0509B900218E4E /* AppDelegate.m in Sources */,
+				89EAF42F1D1A5D9E005AFA05 /* RADataObject.m in Sources */,
+				89EAF4461D1A8807005AFA05 /* carSeatViewController.m in Sources */,
 				895C34371D0E7EEF009F793D /* HomeViewController.m in Sources */,
+				89EAF4491D1A8937005AFA05 /* feeNeedViewController.m in Sources */,
 				895C343D1D0E7F37009F793D /* ShopViewController.m in Sources */,
 				897B2FE31D0509B900218E4E /* main.m in Sources */,
 			);

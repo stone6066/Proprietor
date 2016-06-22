@@ -20,9 +20,15 @@
         CGFloat lblWidth=titleStr.length*22;
         _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(45, (cellHeight-lblHeigh)/2, lblWidth, lblHeigh)];
         
+        [_titleLable setFont:[UIFont systemFontOfSize:15]];
+       
+
+        
+        CGSize size = [titleStr sizeWithFont:_titleLable.font constrainedToSize:CGSizeMake(MAXFLOAT, _titleLable.frame.size.height)];
         
         lblWidth=txtStr.length*20;
-        _txtLable = [[UILabel alloc] initWithFrame:CGRectMake(45+_titleLable.frame.size.width+5, (cellHeight-lblHeigh)/2, lblWidth, lblHeigh)];
+        _txtLable = [[UILabel alloc] initWithFrame:CGRectMake(45+size.width+5, (cellHeight-lblHeigh)/2, lblWidth, lblHeigh)];
+         [_txtLable setFont:[UIFont systemFontOfSize:15]];
         
         _iconImg=[[UIImageView alloc]initWithFrame:CGRectMake(15, (cellHeight-20)/2, 20, 20)];
         _lookImg=[[UIImageView alloc]initWithFrame:CGRectMake(cellWidth-30, (cellHeight-20)/2, 12, 20)];
@@ -32,8 +38,6 @@
         _iconImg.image=[UIImage imageNamed:iconImgName];
         _lookImg.image=[UIImage imageNamed:lookStr];
         
-        [_titleLable setFont:[UIFont systemFontOfSize:15]];
-        [_txtLable setFont:[UIFont systemFontOfSize:15]];
         
         [_titleLable setTextColor:[UIColor blackColor]];
         [_txtLable setTextColor:[UIColor blackColor]];

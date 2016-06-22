@@ -8,5 +8,7 @@ pod 'MJRefresh'                 #刷新
 pod 'MJExtension'    		    #JSON模型转换
 pod 'SVProgressHUD'             #蒙版
 pod 'MBProgressHUD', '~> 0.9.1' #蒙版
+pod 'RATreeView'
+
 end
 

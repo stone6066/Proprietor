@@ -10,7 +10,11 @@
 #import "AppDelegate.h"
 #import "PublicDefine.h"
 #import "stdCellVc.h"
-
+#import "personInfoViewController.h"
+#import "HomeInfoViewController.h"
+#import "carRoomViewController.h"
+#import "carSeatViewController.h"
+#import "feeNeedViewController.h"
 @interface MyInfoViewController ()<StdButtonDelegate>
 
 @end
@@ -93,8 +97,52 @@
     qianFee.stdDelegate=self;
     about.stdDelegate=self;
 }
+-(void)pushPersonVC{
+    personInfoViewController *personVc=[[personInfoViewController alloc]init];
+    [self.navigationController pushViewController:personVc animated:NO];
+}
 
+-(void)pushHomeVC{
+    HomeInfoViewController *personVc=[[HomeInfoViewController alloc]init];
+    [self.navigationController pushViewController:personVc animated:NO];
+}
+
+-(void)pushCarRoomVC{
+    carRoomViewController *personVc=[[carRoomViewController alloc]init];
+    [self.navigationController pushViewController:personVc animated:NO];
+}
+-(void)pushCarSeatVC{
+    carSeatViewController *personVc=[[carSeatViewController alloc]init];
+    [self.navigationController pushViewController:personVc animated:NO];
+}
+-(void)pushFeeNeedVC{
+    feeNeedViewController *personVc=[[feeNeedViewController alloc]init];
+    [self.navigationController pushViewController:personVc animated:NO];
+}
 -(void)clickDelegate:(NSInteger)sendId{
     NSLog(@"%ld",(long)sendId);
+    
+    switch (sendId) {
+        case 1://个人信息
+            [self pushPersonVC];
+            break;
+        case 2://房屋信息
+            [self pushHomeVC];
+            break;
+        case 3://车库信息
+            [self pushCarRoomVC];
+            break;
+        case 4://车位信息
+            [self pushCarSeatVC];
+            break;
+        case 5://欠费信息
+            [self pushFeeNeedVC];
+            break;
+        case 6://关于
+            
+            break;
+        default:
+            break;
+    }
 }
 @end
