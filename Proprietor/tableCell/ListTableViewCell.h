@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-@class repairTableModel;
+@class repairTableModel,baoxiuModel,complainListModel;
 
 @interface ListTableViewCell : UITableViewCell
 @property(nonatomic,strong)UILabel *titleLbl;
+@property(nonatomic,strong)UILabel *timeLbl;
 @property(nonatomic,strong)UIImageView *titleImage;
 @property(nonatomic,copy)NSString *cellId;
-
+@property(nonatomic,copy)NSString *noticeContent;
+@property(nonatomic,copy)NSString *createTime;
 -(void)showUiNewsCell:(repairTableModel*)NModel;
-
+-(void)showUiBaoxiuCell:(baoxiuModel*)NModel;
+-(void)showUiComplainCell:(complainListModel*)NModel;
 @end

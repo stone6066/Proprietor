@@ -8,11 +8,14 @@
 
 #import "addComplainViewController.h"
 #import "PublicDefine.h"
+#import "complainTypeModel.h"
 
 @interface addComplainViewController ()<UITextFieldDelegate>
 {
     NSMutableArray *pickerArr;
-    NSArray *typeArr;
+    NSMutableArray *typeArr;//picker名字
+    NSMutableArray *typeDataArr;//名字、id
+    complainTypeModel *compainData;
 }
 
 @end
@@ -21,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    typeDataArr=[[NSMutableArray alloc]init];
+    typeArr=[[NSMutableArray alloc]init];
     [self loadTopNav];
     self.view.backgroundColor=MyGrayColor;
     [self loadAddView];
@@ -33,7 +38,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)loadPickViewWithToolBar{
-    typeArr=[[NSArray alloc]initWithObjects:@"电梯",@"煤气",@"水电",@"其他", nil];
+    //typeArr=[[NSMutableArray alloc]initWithObjects:@"电梯",@"煤气",@"水电",@"其他", nil];
     pickerArr=[[NSMutableArray alloc]init];
     self.pView=[[UIView alloc]initWithFrame:CGRectMake(0, fDeviceHeight-300, fDeviceWidth, 250)];
     self.pickerView=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 40, fDeviceWidth, 210)];
@@ -64,6 +69,15 @@
 }
 -(void)okClickbtn{
     self.pView.hidden=YES;
+    if (compainData) {
+        _repairType.text=compainData.complaintTypeName;
+    }
+    else
+    {
+        compainData=[typeDataArr objectAtIndex:0];
+        _repairType.text=compainData.complaintTypeName;
+
+    }
     NSLog(@"ok");
 }
 -(void)cancleClickbtn{
@@ -124,8 +138,8 @@
 
 
 -(void)typeClickBtn{
-    self.pView.hidden=NO;
-    [self loadPickerView:typeArr];
+    [self loadTypeData];
+  
     NSLog(@"lbltype点击");
 }
 -(void)stdInitTxtF:(UITextField*)txtF hintxt:(NSString*)hintstr{
@@ -156,6 +170,7 @@
 -(void)stdAddClick{
 //    addRepairViewController *addView=[[addRepairViewController alloc]init];
 //    [self.navigationController pushViewController:addView animated:NO];
+    [self addComplainToSrv];
     NSLog(@"提交投诉");
 }
 -(void)textfieldRecognizer{
@@ -233,7 +248,115 @@
 //被选择的行
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     NSLog(@"选择:%@",[pickerArr objectAtIndex:row]);
+    compainData=[typeDataArr objectAtIndex:row];
     
 }
 
+
+
+-(void)loadTypeData{
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                };
+    
+    //http://192.168.0.21:8080/propies/complaint/type
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@",BaseUrl,@"propies/complaint/type"];
+  
+    NSLog(@"baoxiuurlstr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"result"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"true"]) {
+                                              //成功
+                                              complainTypeModel *CMP=[[complainTypeModel alloc]init];
+                                              typeDataArr=[CMP asignModelWithDict:jsonDic];
+                                              
+                                              [SVProgressHUD dismiss];
+                                              [typeArr removeAllObjects];
+                                              for (complainTypeModel *CM in typeDataArr) {
+                                                  [typeArr addObject:CM.complaintTypeName];
+                                              }
+                                              self.pView.hidden=NO;
+                                              [self loadPickerView:typeArr];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      
+                                  }];
+    
+}
+
+
+-(void)addComplainToSrv{
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                };
+    
+   // http://192.168.0.21:8080/propies/complaint/complaintadd?complaintTypeId=1&complaintContent=阿瓦达阿瓦达&communityId=1&roomsId=1
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies/complaint/complaintadd?complaintTypeId=",compainData.complaintTypeId,@"&complaintContent=",_repaitText.text,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId];
+    NSLog(@"baoxiuurlstr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"result"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"true"]) {
+                                              
+                                              [SVProgressHUD dismiss];
+                                              [self clickleftbtn];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      
+                                  }];
+    
+}
 @end

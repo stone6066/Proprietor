@@ -8,6 +8,8 @@
 
 #import "ListTableViewCell.h"
 #import "repairTableModel.h"
+#import "baoxiuModel.h"
+#import "complainListModel.h"
 
 @implementation ListTableViewCell
 
@@ -27,11 +29,17 @@
         
         CGFloat CellWidth= self.contentView.frame.size.width-4;
         
-        _titleLbl=[[UILabel alloc]initWithFrame:CGRectMake(30,0,CellWidth-30,35)];
+        _titleLbl=[[UILabel alloc]initWithFrame:CGRectMake(30,0,CellWidth-30-55,35)];
         _titleLbl.font=[UIFont systemFontOfSize:13];
-        [_titleLbl setLineBreakMode:NSLineBreakByWordWrapping];
-        [_titleLbl setNumberOfLines:0];
+//        [_titleLbl setLineBreakMode:NSLineBreakByWordWrapping];
+//        [_titleLbl setNumberOfLines:0];
         [self addSubview:_titleLbl];
+        
+        _timeLbl=[[UILabel alloc]initWithFrame:CGRectMake(CellWidth-30,2,100,35)];
+        _timeLbl.font=[UIFont systemFontOfSize:10];
+        //        [_titleLbl setLineBreakMode:NSLineBreakByWordWrapping];
+        //        [_titleLbl setNumberOfLines:0];
+        [self addSubview:_timeLbl];
         
         _titleImage=[[UIImageView alloc]initWithFrame:CGRectMake(8,10,15,15)];
         //_titleImage.backgroundColor=[UIColor blueColor];
@@ -45,8 +53,28 @@
 
 -(void)showUiNewsCell:(repairTableModel*)NModel{
     
-    _titleLbl.text=NModel.title;
-    _titleImage.image=[UIImage imageNamed:NModel.imageurl];
-    _cellId=NModel.cellId;
+    _titleLbl.text=NModel.noticeTitle;
+    _timeLbl.text=NModel.createTime;
+    _titleImage.image=[UIImage imageNamed:@"notice"];
+    _cellId=NModel.noticeId;
+    _noticeContent=NModel.noticeContent;
+}
+
+-(void)showUiBaoxiuCell:(baoxiuModel*)NModel{
+    
+    _titleLbl.text=NModel.mendTitle;
+    _timeLbl.text=NModel.reportTime;
+    _titleImage.image=[UIImage imageNamed:@"nshoul"];
+    _cellId=NModel.mendId;
+    //_noticeContent=NModel.noticeContent;
+}
+
+-(void)showUiComplainCell:(complainListModel*)NModel{
+    
+    _titleLbl.text=NModel.mendTitle;
+    _timeLbl.text=NModel.reportTime;
+    _titleImage.image=[UIImage imageNamed:@"nshoul"];
+    _cellId=NModel.mendId;
+    //_noticeContent=NModel.noticeContent;
 }
 @end

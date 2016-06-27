@@ -11,7 +11,7 @@
 @interface repairViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *TableView;
 @property(nonatomic,strong)UIButton *addReport;
-@property(nonatomic,copy)NSString *listType;//0未受理、1已受理
+@property(nonatomic,assign)NSInteger listType;//0未受理、1已受理
 
 
 

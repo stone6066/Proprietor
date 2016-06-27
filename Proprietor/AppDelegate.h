@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "AFNetworking.h"//网络请求三方
+#import "loginInfo.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -26,6 +27,8 @@
  */
 @property (strong, nonatomic) UITabBarController *tabBarViewController;
 @property (assign, nonatomic) BOOL isLogin;
+@property (strong, nonatomic) loginInfo *myLoginInfo;
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

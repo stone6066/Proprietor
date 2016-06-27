@@ -9,7 +9,7 @@
 #import "repairViewController.h"
 #import "PublicDefine.h"
 #import "ListTableViewCell.h"
-#import "repairTableModel.h"
+#import "baoxiuModel.h"
 #import "addRepairViewController.h"
 
 @interface repairViewController ()
@@ -35,13 +35,16 @@
     _tableDataSource=[[NSMutableArray alloc]init];
      NSArray *arrtitle=[[NSArray alloc]initWithObjects:@"未受理报修", @"已受理报修",nil];
     [self loadTabbar:arrtitle selectedindex:0];
-    [self loadTableView];
+    
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadTableView];
 }
 //自定义底部tabbar
 -(void)loadTabbar:(NSArray*)btn_arr selectedindex:(NSInteger)index{
@@ -111,30 +114,14 @@
     }
     [_tableDataSource removeAllObjects];
     if (sender.tag==0) {//未受理
-        _listType=@"0";
-        for (int i=0; i<30; i++) {
-            repairTableModel *rm=[[repairTableModel alloc]init];
-            rm.title=@"未受理报事测试";
-            rm.imageurl=@"nshoul";
-            rm.cellId=@"1";
-            [_tableDataSource addObject:rm];
-            [self.TableView reloadData];
-            _addReport.hidden=NO;
-        }
-    }
+        _listType=0;
+        _pageindex=1;
+        [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+            }
     else{
-        _listType=@"1";
-        for (int i=0; i<30; i++) {
-            repairTableModel *rm=[[repairTableModel alloc]init];
-            rm.title=@"已受理报事测试";
-            rm.imageurl=@"yshoul";
-            rm.cellId=@"2";
-            [_tableDataSource addObject:rm];
-            [self.TableView reloadData];
-            _addReport.hidden=YES;
-        }
-
-    
+        _listType=1;
+        _pageindex=1;
+        [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
     }
     NSLog(@"%ld",sender.tag);
     
@@ -176,15 +163,17 @@ static NSString * const MarketCellId = @"repairTableCell";
     [self.view addSubview:self.TableView];
     
     _pageindex=1;
+    _listType=0;
+    [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
     //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
-    _listType=@"0";
+    
     
     
     // 下拉刷新
     __unsafe_unretained __typeof(self) weakSelf = self;
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _pageindex=1;
-        //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
+        [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
         [weakSelf.TableView.mj_header endRefreshing];
         // 进入刷新状态后会自动调用这个block
     }];
@@ -194,12 +183,12 @@ static NSString * const MarketCellId = @"repairTableCell";
         // 进入刷新状态后会自动调用这个block
         if (_tableDataSource.count>0) {
             _pageindex+=1;
-            //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
+            [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
         }
         else
         {
             _pageindex=1;
-            //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
+            [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
         }
         
         // 结束刷新
@@ -208,14 +197,6 @@ static NSString * const MarketCellId = @"repairTableCell";
     
     
     [self addReportBtn];
-    for (int i=0; i<30; i++) {
-        repairTableModel *rm=[[repairTableModel alloc]init];
-        rm.title=@"未受理报事测试";
-        rm.imageurl=@"nshoul";
-        rm.cellId=@"1";
-        [_tableDataSource addObject:rm];
-        [self.TableView reloadData];
-    }
 
 }
 #pragma mark table delegate
@@ -231,15 +212,9 @@ static NSString * const MarketCellId = @"repairTableCell";
     ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MarketCellId forIndexPath:indexPath];
     //
     //    // 将数据视图框架模型(该模型中包含了数据模型)赋值给Cell，
-    repairTableModel *dm=_tableDataSource[indexPath.item];
-    [cell showUiNewsCell:dm];
-//    cell.textLabel.text=_tableDataSource[indexPath.item];
+    baoxiuModel *dm=_tableDataSource[indexPath.item];
+    [cell showUiBaoxiuCell:dm];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    if (_tableDataSource.count) {
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    }else{
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//    }
     return cell;
     
 }
@@ -262,13 +237,20 @@ static NSString * const MarketCellId = @"repairTableCell";
 }
 
 
--(void)loadTableData:(NSString*)uid typeStr:(NSString*)strTmp pageNo:(NSInteger)pagenum{
+-(void)loadTableData:(NSString*)uid pageNo:(NSInteger)pagenum{
     [SVProgressHUD showWithStatus:k_Status_Load];
     NSDictionary *paramDict = @{
                                 @"ut":@"indexVilliageGoods",
                                 };
-    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@",BaseUrl,BasePath,@"interface/getgoodsnew.htm?uid=",uid,@"&typeStr=",strTmp];
-    //NSLog(@"urlstr:%@",urlstr);
+    
+    
+    NSString *urlstr=@"";
+    if (_listType==0) {
+         urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/mend/notaccept?communityId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
+    }
+    else
+        urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/mend/accept?communityId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
+    NSLog(@"baoxiuurlstr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}
@@ -288,7 +270,7 @@ static NSString * const MarketCellId = @"repairTableCell";
                                               //成功
                                               
                                               [SVProgressHUD dismiss];
-                                              repairTableModel *SM=[[repairTableModel alloc]init];
+                                              baoxiuModel *SM=[[baoxiuModel alloc]init];
                                               NSMutableArray *datatmp=[SM asignModelWithDict:jsonDic];
                                               if (pagenum==1) {
                                                   _tableDataSource=datatmp;

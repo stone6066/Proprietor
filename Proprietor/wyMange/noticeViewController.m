@@ -26,7 +26,10 @@
     _tableDataSource=[[NSMutableArray alloc]init];
      [self loadTableView];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    _pageindex=0;
+    [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -54,7 +57,7 @@ static NSString * const MarketCellId = @"repairTableCell";
     __unsafe_unretained __typeof(self) weakSelf = self;
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _pageindex=1;
-        //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
+        [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
         [weakSelf.TableView.mj_header endRefreshing];
         // 进入刷新状态后会自动调用这个block
     }];
@@ -64,28 +67,18 @@ static NSString * const MarketCellId = @"repairTableCell";
         // 进入刷新状态后会自动调用这个block
         if (_tableDataSource.count>0) {
             _pageindex+=1;
-            //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
+            [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
         }
         else
         {
             _pageindex=1;
-            //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
+            [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
         }
         
         // 结束刷新
         [weakSelf.TableView.mj_footer endRefreshing];
     }];
-    
-    
-   
-    for (int i=0; i<30; i++) {
-        repairTableModel *rm=[[repairTableModel alloc]init];
-        rm.title=@"社区公告测试";
-        rm.imageurl=@"noticeList";
-        rm.cellId=@"1";
-        [_tableDataSource addObject:rm];
-        [self.TableView reloadData];
-    }
+
     
 }
 #pragma mark table delegate
@@ -132,13 +125,15 @@ static NSString * const MarketCellId = @"repairTableCell";
 }
 
 
--(void)loadTableData:(NSString*)uid typeStr:(NSString*)strTmp pageNo:(NSInteger)pagenum{
+-(void)loadTableData:(NSString*)uid  pageNo:(NSInteger)pagenum{
     [SVProgressHUD showWithStatus:k_Status_Load];
     NSDictionary *paramDict = @{
                                 @"ut":@"indexVilliageGoods",
                                 };
-    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@",BaseUrl,BasePath,@"interface/getgoodsnew.htm?uid=",uid,@"&typeStr=",strTmp];
-    //NSLog(@"urlstr:%@",urlstr);
+    //http://localhost:8080/propies/index/notice?communityId=1&page=1&pagesize=20
+   // NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/index/notice?communityId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@",BaseUrl,@"propies/index/notice?communityId=",uid,@"&page=0",@"&pagesize=20"];
+    NSLog(@"homestr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}
@@ -186,5 +181,4 @@ static NSString * const MarketCellId = @"repairTableCell";
                                   }];
     
 }
-
 @end

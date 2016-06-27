@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface repairTableModel : NSObject
-@property (nonatomic,copy)NSString *title;
-@property (nonatomic,copy)NSString *imageurl;
-@property (nonatomic,copy)NSString *cellId;
-
+@property (nonatomic,copy)NSString *noticeId;
+@property (nonatomic,copy)NSString *noticeTitle;
+@property (nonatomic,copy)NSString *noticeContent;
+@property (nonatomic,copy)NSString *createTime;
+@property (nonatomic,copy)NSString *userId;
 - (NSMutableArray *)asignModelWithDict:(NSDictionary *)dict;
 @end

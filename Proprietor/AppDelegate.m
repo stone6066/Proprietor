@@ -33,6 +33,7 @@
     self.httpManager = [AFHTTPSessionManager manager];
     self.httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     self.isLogin=NO;
+    self.myLoginInfo=[[loginInfo alloc]init];
 }
 
 -(void)enterMainWindow{

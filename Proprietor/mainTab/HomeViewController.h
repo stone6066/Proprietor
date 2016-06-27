@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong)UITableView* TableView;
 @property(nonatomic,copy)NSString *topTitle;
+@property(nonatomic,assign)NSInteger pageindex;
 @end

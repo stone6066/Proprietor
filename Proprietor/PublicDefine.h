@@ -33,6 +33,7 @@
 #define TopSeachHigh (65)
 #define AdHight (160)
 #define NavTopHight (90)
+#define HomeADHeigh ((fDeviceWidth*9)/16)
 
 //#define NSUserDefaultsUserName @"userName"
 //#define NSUserDefaultsUserPWD @"userPWD"
@@ -48,7 +49,7 @@
 //#define NetUrl @"http://shop.anquan365.org/nst/common.htm?"
 //#define MainUrl @"http://shop.anquan365.org/"
 #define MainToken @"tao-yx.com"
-#define BaseUrl @"http://www.pinjianfood.com/"
+#define BaseUrl @"http://192.168.0.21:8080/"
 #define BasePath @"mobile/interface/"
 
 //#define BaseUrl @"http://192.168.0.65:8080/paistore_m_site/"

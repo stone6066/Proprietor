@@ -19,10 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadContentView:@"13800138000" contact:@"程经理" address:@"金凤区新华南路109号"];
+    //[self loadContentView:@"13800138000" contact:@"程经理" address:@"金凤区新华南路109号"];
     // Do any additional setup after loading the view.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadTableData:ApplicationDelegate.myLoginInfo.communityId];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -79,12 +81,13 @@
     [self.view addSubview:contentVc];
     
 }
--(void)loadTableData:(NSString*)uid typeStr:(NSString*)strTmp pageNo:(NSInteger)pagenum{
+-(void)loadTableData:(NSString*)uid{
     [SVProgressHUD showWithStatus:k_Status_Load];
     NSDictionary *paramDict = @{
                                 @"ut":@"indexVilliageGoods",
                                 };
-    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@",BaseUrl,BasePath,@"interface/getgoodsnew.htm?uid=",uid,@"&typeStr=",strTmp];
+    //http://192.168.0.21:8080/propies/owner/communityinfo?communityId=6
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@",BaseUrl,@"propies/owner/communityinfo?communityId=",uid];
     //NSLog(@"urlstr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
@@ -103,7 +106,18 @@
                                           //
                                           if ([suc isEqualToString:@"true"]) {
                                               //成功
-                                              
+                                             
+                                              NSArray *dictArray = [jsonDic objectForKey:@"data"];
+                                              if(![[jsonDic objectForKey:@"data"] isEqual:[NSNull null]])
+                                              {
+                                                  
+                                                  for (NSDictionary *dict in dictArray) {
+                                                      [self loadContentView:[dict objectForKey:@"coummunityPhone"] contact:[dict objectForKey:@"coummunityAdmin"] address:[dict objectForKey:@"communityAddress"]];
+                                                     
+                                                  }
+                                                  
+                                              }
+
                                               [SVProgressHUD dismiss];
                                               
                                               

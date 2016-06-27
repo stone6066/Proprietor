@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "PublicDefine.h"
+#import "loginInfo.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -77,7 +78,14 @@
     [self.view addSubview:_LoginBtn];
 }
 -(void)clickloginbtn{
-    [self loginSuccPro];
+    //[self loginSuccPro];
+//    if ( _UsrTxtF.text.length<1) {
+//        return;
+//    }
+//    if ( _PassTxtF.text.length<1) {
+//        return;
+//    }
+    [self loginNetFuc:_UsrTxtF.text passWord:_PassTxtF.text];
 }
 
 -(void)loginSuccPro{
@@ -98,11 +106,65 @@
     txtF.delegate=self;
 }
 
+//登录
+-(void)loginNetFuc:(NSString*)usr passWord:(NSString*)psw{
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    //http://localhost:8080/propies/login/owner?ownerLogin=admin1&ownerPwd=aaaaaa
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                @"pageNo":[NSString stringWithFormat:@"%d",1],
+                                @"pageSize":[NSString stringWithFormat:@"%d",20]
+                                };
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@",BaseUrl,@"propies/login/owner?ownerLogin=",@"13777777777",@"&ownerPwd=",@"aaaaaa"];
+    //NSLog(@"urlstr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"msg"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"登陆成功"]) {
+                                              //成功
+                                              loginInfo *LGIN=[[loginInfo alloc]init];
+                                              ApplicationDelegate.myLoginInfo=[LGIN asignInfoWithDict:jsonDic];
+                                              [SVProgressHUD dismiss];
+                                              [self loginSuccPro];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:suc];
+                                              if(self.loginFailBlock)
+                                                  self.loginFailBlock(self);
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          if(self.loginFailBlock)
+                                              self.loginFailBlock(self);
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      if(self.loginFailBlock)
+                                          self.loginFailBlock(self);
+                                  }];
+    
+}
+
+
 -(void)loadMoreCollectionViewData:(NSString*)usr passWord:(NSString*)psw{
     [SVProgressHUD showWithStatus:k_Status_Load];
-    
-    //NSString *urlStr = [NSString stringWithFormat:@"%@%@",NetUrl,@"UsrStore.asmx/GetPartsList"];
-    
+    //http://localhost:8080/propies/index/notice?communityId=1&page=1&pagesize=20
     NSDictionary *paramDict = @{
                                 @"ut":@"indexVilliageGoods",
                                 @"pageNo":[NSString stringWithFormat:@"%d",1],
@@ -152,14 +214,6 @@
                                   }];
     
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

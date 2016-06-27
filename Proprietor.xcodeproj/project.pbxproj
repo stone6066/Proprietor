@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		7E606ECBC0D8B6A87A30661E /* Pods_Proprietor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF166672A1FD772A2A141078 /* Pods_Proprietor.framework */; };
+		890681AF1D20ADEA000605EA /* loginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 890681AE1D20ADEA000605EA /* loginInfo.m */; };
+		890681B21D20C2D6000605EA /* baoxiuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 890681B11D20C2D6000605EA /* baoxiuModel.m */; };
+		890681B51D20F8DE000605EA /* complainTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 890681B41D20F8DE000605EA /* complainTypeModel.m */; };
+		890681B81D211B94000605EA /* complainListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 890681B71D211B94000605EA /* complainListModel.m */; };
 		893080511D1286D100960923 /* repairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 893080501D1286D100960923 /* repairViewController.m */; };
 		893080541D1286F700960923 /* complainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 893080531D1286F700960923 /* complainViewController.m */; };
 		893080571D12870500960923 /* noticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 893080561D12870500960923 /* noticeViewController.m */; };
@@ -180,6 +184,14 @@
 
 /* Begin PBXFileReference section */
 		20BA0DEBE348329AD85254CF /* Pods-Proprietor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proprietor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Proprietor/Pods-Proprietor.debug.xcconfig"; sourceTree = "<group>"; };
+		890681AD1D20ADEA000605EA /* loginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginInfo.h; sourceTree = "<group>"; };
+		890681AE1D20ADEA000605EA /* loginInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginInfo.m; sourceTree = "<group>"; };
+		890681B01D20C2D6000605EA /* baoxiuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baoxiuModel.h; sourceTree = "<group>"; };
+		890681B11D20C2D6000605EA /* baoxiuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = baoxiuModel.m; sourceTree = "<group>"; };
+		890681B31D20F8DE000605EA /* complainTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = complainTypeModel.h; sourceTree = "<group>"; };
+		890681B41D20F8DE000605EA /* complainTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = complainTypeModel.m; sourceTree = "<group>"; };
+		890681B61D211B94000605EA /* complainListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = complainListModel.h; sourceTree = "<group>"; };
+		890681B71D211B94000605EA /* complainListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = complainListModel.m; sourceTree = "<group>"; };
 		8930804F1D1286D100960923 /* repairViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = repairViewController.h; sourceTree = "<group>"; };
 		893080501D1286D100960923 /* repairViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = repairViewController.m; sourceTree = "<group>"; };
 		893080521D1286F700960923 /* complainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = complainViewController.h; sourceTree = "<group>"; };
@@ -679,6 +691,14 @@
 				89D282A41D139B4000B91834 /* repairTableModel.m */,
 				89EAF3DC1D1A22F9005AFA05 /* personInfoMode.h */,
 				89EAF3DD1D1A22F9005AFA05 /* personInfoMode.m */,
+				890681AD1D20ADEA000605EA /* loginInfo.h */,
+				890681AE1D20ADEA000605EA /* loginInfo.m */,
+				890681B01D20C2D6000605EA /* baoxiuModel.h */,
+				890681B11D20C2D6000605EA /* baoxiuModel.m */,
+				890681B31D20F8DE000605EA /* complainTypeModel.h */,
+				890681B41D20F8DE000605EA /* complainTypeModel.m */,
+				890681B61D211B94000605EA /* complainListModel.h */,
+				890681B71D211B94000605EA /* complainListModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1033,8 +1053,10 @@
 				89EAF3D81D1A12ED005AFA05 /* personInfoViewController.m in Sources */,
 				897B2FE91D0509B900218E4E /* ViewController.m in Sources */,
 				897B2FEF1D0509B900218E4E /* Proprietor.xcdatamodeld in Sources */,
+				890681B21D20C2D6000605EA /* baoxiuModel.m in Sources */,
 				895C34401D0E7F84009F793D /* MyInfoViewController.m in Sources */,
 				89EFB7221D18D43C00B83BEF /* stdCallBtn.m in Sources */,
+				890681AF1D20ADEA000605EA /* loginInfo.m in Sources */,
 				89D282B41D13C72700B91834 /* addRepairViewController.m in Sources */,
 				895C34141D0E7ABF009F793D /* LoginViewController.m in Sources */,
 				893356631D17B7A400B85B1C /* addComplainViewController.m in Sources */,
@@ -1042,6 +1064,7 @@
 				893080541D1286F700960923 /* complainViewController.m in Sources */,
 				89EAF4431D1A873B005AFA05 /* carRoomViewController.m in Sources */,
 				89EAF4301D1A5D9E005AFA05 /* RATableViewCell.m in Sources */,
+				890681B81D211B94000605EA /* complainListModel.m in Sources */,
 				893080511D1286D100960923 /* repairViewController.m in Sources */,
 				89EAF3DE1D1A22F9005AFA05 /* personInfoMode.m in Sources */,
 				89EFB7231D18D43C00B83BEF /* stdCellVc.m in Sources */,
@@ -1055,6 +1078,7 @@
 				89EAF42F1D1A5D9E005AFA05 /* RADataObject.m in Sources */,
 				89EAF4461D1A8807005AFA05 /* carSeatViewController.m in Sources */,
 				895C34371D0E7EEF009F793D /* HomeViewController.m in Sources */,
+				890681B51D20F8DE000605EA /* complainTypeModel.m in Sources */,
 				89EAF4491D1A8937005AFA05 /* feeNeedViewController.m in Sources */,
 				895C343D1D0E7F37009F793D /* ShopViewController.m in Sources */,
 				897B2FE31D0509B900218E4E /* main.m in Sources */,
