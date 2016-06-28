@@ -10,7 +10,7 @@
 #import "repairTableModel.h"
 #import "baoxiuModel.h"
 #import "complainListModel.h"
-
+#import "PublicDefine.h"
 @implementation ListTableViewCell
 
 - (void)awakeFromNib {
@@ -35,8 +35,10 @@
 //        [_titleLbl setNumberOfLines:0];
         [self addSubview:_titleLbl];
         
-        _timeLbl=[[UILabel alloc]initWithFrame:CGRectMake(CellWidth-30,2,100,35)];
+        
+        _timeLbl=[[UILabel alloc]initWithFrame:CGRectMake(fDeviceWidth-90,2,90,35)];
         _timeLbl.font=[UIFont systemFontOfSize:10];
+        //_timeLbl.backgroundColor=[UIColor yellowColor];
         //        [_titleLbl setLineBreakMode:NSLineBreakByWordWrapping];
         //        [_titleLbl setNumberOfLines:0];
         [self addSubview:_timeLbl];
@@ -71,10 +73,10 @@
 
 -(void)showUiComplainCell:(complainListModel*)NModel{
     
-    _titleLbl.text=NModel.mendTitle;
-    _timeLbl.text=NModel.reportTime;
+    _titleLbl.text=NModel.complaintContent;
+    _timeLbl.text=NModel.complaintCreatetime;
     _titleImage.image=[UIImage imageNamed:@"nshoul"];
-    _cellId=NModel.mendId;
+    _cellId=NModel.complaintId;
     //_noticeContent=NModel.noticeContent;
 }
 @end

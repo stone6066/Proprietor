@@ -101,6 +101,18 @@
 		897B2FF11D0509B900218E4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897B2FF01D0509B900218E4E /* Assets.xcassets */; };
 		897B2FFF1D0509B900218E4E /* ProprietorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 897B2FFE1D0509B900218E4E /* ProprietorTests.m */; };
 		897B300A1D0509B900218E4E /* ProprietorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 897B30091D0509B900218E4E /* ProprietorUITests.m */; };
+		89CFAE321D22045C00C1EDFB /* mendTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE311D22045C00C1EDFB /* mendTypeModel.m */; };
+		89CFAE351D2206CC00C1EDFB /* mendStateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE341D2206CC00C1EDFB /* mendStateModel.m */; };
+		89CFAE411D2218BF00C1EDFB /* carRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE381D2218BF00C1EDFB /* carRoomViewController.m */; };
+		89CFAE421D2218BF00C1EDFB /* carSeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE3A1D2218BF00C1EDFB /* carSeatViewController.m */; };
+		89CFAE431D2218BF00C1EDFB /* feeNeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE3C1D2218BF00C1EDFB /* feeNeedViewController.m */; };
+		89CFAE441D2218BF00C1EDFB /* HomeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE3E1D2218BF00C1EDFB /* HomeInfoViewController.m */; };
+		89CFAE451D2218BF00C1EDFB /* personInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE401D2218BF00C1EDFB /* personInfoViewController.m */; };
+		89CFAE471D221F2B00C1EDFB /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE461D221F2B00C1EDFB /* NullSafe.m */; };
+		89CFAE4A1D22437A00C1EDFB /* familyNumberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE491D22437A00C1EDFB /* familyNumberModel.m */; };
+		89CFAE4D1D2257A300C1EDFB /* ownerRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE4C1D2257A300C1EDFB /* ownerRoomModel.m */; };
+		89CFAE501D2261CA00C1EDFB /* carSeatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE4F1D2261CA00C1EDFB /* carSeatModel.m */; };
+		89CFAE531D226F1A00C1EDFB /* carRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CFAE521D226F1A00C1EDFB /* carRoomModel.m */; };
 		89D282A11D13817100B91834 /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D282A01D13817100B91834 /* ListTableViewCell.m */; };
 		89D282A51D139B4000B91834 /* repairTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D282A41D139B4000B91834 /* repairTableModel.m */; };
 		89D282AC1D13A18300B91834 /* nshoul.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D282A61D13A18300B91834 /* nshoul.png */; };
@@ -110,7 +122,6 @@
 		89D282B01D13A18300B91834 /* yshoul@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D282AA1D13A18300B91834 /* yshoul@2x.png */; };
 		89D282B11D13A18300B91834 /* yshoul@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D282AB1D13A18300B91834 /* yshoul@3x.png */; };
 		89D282B41D13C72700B91834 /* addRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D282B31D13C72700B91834 /* addRepairViewController.m */; };
-		89EAF3D81D1A12ED005AFA05 /* personInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF3D71D1A12ED005AFA05 /* personInfoViewController.m */; };
 		89EAF3DE1D1A22F9005AFA05 /* personInfoMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF3DD1D1A22F9005AFA05 /* personInfoMode.m */; };
 		89EAF42F1D1A5D9E005AFA05 /* RADataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF42B1D1A5D9E005AFA05 /* RADataObject.m */; };
 		89EAF4301D1A5D9E005AFA05 /* RATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF42D1D1A5D9E005AFA05 /* RATableViewCell.m */; };
@@ -121,10 +132,6 @@
 		89EAF43B1D1A6A5F005AFA05 /* verticalLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4351D1A6A5F005AFA05 /* verticalLine.png */; };
 		89EAF43C1D1A6A5F005AFA05 /* verticalLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4361D1A6A5F005AFA05 /* verticalLine@2x.png */; };
 		89EAF43D1D1A6A5F005AFA05 /* verticalLine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EAF4371D1A6A5F005AFA05 /* verticalLine@3x.png */; };
-		89EAF4401D1A7C4F005AFA05 /* HomeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF43F1D1A7C4F005AFA05 /* HomeInfoViewController.m */; };
-		89EAF4431D1A873B005AFA05 /* carRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF4421D1A873B005AFA05 /* carRoomViewController.m */; };
-		89EAF4461D1A8807005AFA05 /* carSeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF4451D1A8807005AFA05 /* carSeatViewController.m */; };
-		89EAF4491D1A8937005AFA05 /* feeNeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EAF4481D1A8937005AFA05 /* feeNeedViewController.m */; };
 		89EFB70B1D18D38F00B83BEF /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB6FC1D18D38F00B83BEF /* about.png */; };
 		89EFB70C1D18D38F00B83BEF /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB6FD1D18D38F00B83BEF /* about@2x.png */; };
 		89EFB70D1D18D38F00B83BEF /* about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB6FE1D18D38F00B83BEF /* about@3x.png */; };
@@ -301,6 +308,29 @@
 		897B30091D0509B900218E4E /* ProprietorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProprietorUITests.m; sourceTree = "<group>"; };
 		897B300B1D0509B900218E4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		897B30171D050C8100218E4E /* PublicDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicDefine.h; sourceTree = "<group>"; };
+		89CFAE301D22045C00C1EDFB /* mendTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mendTypeModel.h; sourceTree = "<group>"; };
+		89CFAE311D22045C00C1EDFB /* mendTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mendTypeModel.m; sourceTree = "<group>"; };
+		89CFAE331D2206CC00C1EDFB /* mendStateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mendStateModel.h; sourceTree = "<group>"; };
+		89CFAE341D2206CC00C1EDFB /* mendStateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mendStateModel.m; sourceTree = "<group>"; };
+		89CFAE371D2218BF00C1EDFB /* carRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carRoomViewController.h; sourceTree = "<group>"; };
+		89CFAE381D2218BF00C1EDFB /* carRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carRoomViewController.m; sourceTree = "<group>"; };
+		89CFAE391D2218BF00C1EDFB /* carSeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carSeatViewController.h; sourceTree = "<group>"; };
+		89CFAE3A1D2218BF00C1EDFB /* carSeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carSeatViewController.m; sourceTree = "<group>"; };
+		89CFAE3B1D2218BF00C1EDFB /* feeNeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = feeNeedViewController.h; sourceTree = "<group>"; };
+		89CFAE3C1D2218BF00C1EDFB /* feeNeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = feeNeedViewController.m; sourceTree = "<group>"; };
+		89CFAE3D1D2218BF00C1EDFB /* HomeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInfoViewController.h; sourceTree = "<group>"; };
+		89CFAE3E1D2218BF00C1EDFB /* HomeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInfoViewController.m; sourceTree = "<group>"; };
+		89CFAE3F1D2218BF00C1EDFB /* personInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personInfoViewController.h; sourceTree = "<group>"; };
+		89CFAE401D2218BF00C1EDFB /* personInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personInfoViewController.m; sourceTree = "<group>"; };
+		89CFAE461D221F2B00C1EDFB /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		89CFAE481D22437A00C1EDFB /* familyNumberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = familyNumberModel.h; sourceTree = "<group>"; };
+		89CFAE491D22437A00C1EDFB /* familyNumberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = familyNumberModel.m; sourceTree = "<group>"; };
+		89CFAE4B1D2257A300C1EDFB /* ownerRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ownerRoomModel.h; sourceTree = "<group>"; };
+		89CFAE4C1D2257A300C1EDFB /* ownerRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ownerRoomModel.m; sourceTree = "<group>"; };
+		89CFAE4E1D2261CA00C1EDFB /* carSeatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carSeatModel.h; sourceTree = "<group>"; };
+		89CFAE4F1D2261CA00C1EDFB /* carSeatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carSeatModel.m; sourceTree = "<group>"; };
+		89CFAE511D226F1A00C1EDFB /* carRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carRoomModel.h; sourceTree = "<group>"; };
+		89CFAE521D226F1A00C1EDFB /* carRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carRoomModel.m; sourceTree = "<group>"; };
 		89D2829F1D13817100B91834 /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListTableViewCell.h; sourceTree = "<group>"; };
 		89D282A01D13817100B91834 /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewCell.m; sourceTree = "<group>"; };
 		89D282A31D139B4000B91834 /* repairTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = repairTableModel.h; sourceTree = "<group>"; };
@@ -313,8 +343,6 @@
 		89D282AB1D13A18300B91834 /* yshoul@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yshoul@3x.png"; sourceTree = "<group>"; };
 		89D282B21D13C72700B91834 /* addRepairViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addRepairViewController.h; sourceTree = "<group>"; };
 		89D282B31D13C72700B91834 /* addRepairViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addRepairViewController.m; sourceTree = "<group>"; };
-		89EAF3D61D1A12ED005AFA05 /* personInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personInfoViewController.h; sourceTree = "<group>"; };
-		89EAF3D71D1A12ED005AFA05 /* personInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personInfoViewController.m; sourceTree = "<group>"; };
 		89EAF3DC1D1A22F9005AFA05 /* personInfoMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = personInfoMode.h; sourceTree = "<group>"; };
 		89EAF3DD1D1A22F9005AFA05 /* personInfoMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = personInfoMode.m; sourceTree = "<group>"; };
 		89EAF42A1D1A5D9E005AFA05 /* RADataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RADataObject.h; sourceTree = "<group>"; };
@@ -328,14 +356,6 @@
 		89EAF4351D1A6A5F005AFA05 /* verticalLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = verticalLine.png; sourceTree = "<group>"; };
 		89EAF4361D1A6A5F005AFA05 /* verticalLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "verticalLine@2x.png"; sourceTree = "<group>"; };
 		89EAF4371D1A6A5F005AFA05 /* verticalLine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "verticalLine@3x.png"; sourceTree = "<group>"; };
-		89EAF43E1D1A7C4F005AFA05 /* HomeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInfoViewController.h; sourceTree = "<group>"; };
-		89EAF43F1D1A7C4F005AFA05 /* HomeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInfoViewController.m; sourceTree = "<group>"; };
-		89EAF4411D1A873B005AFA05 /* carRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carRoomViewController.h; sourceTree = "<group>"; };
-		89EAF4421D1A873B005AFA05 /* carRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carRoomViewController.m; sourceTree = "<group>"; };
-		89EAF4441D1A8807005AFA05 /* carSeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carSeatViewController.h; sourceTree = "<group>"; };
-		89EAF4451D1A8807005AFA05 /* carSeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carSeatViewController.m; sourceTree = "<group>"; };
-		89EAF4471D1A8937005AFA05 /* feeNeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = feeNeedViewController.h; sourceTree = "<group>"; };
-		89EAF4481D1A8937005AFA05 /* feeNeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = feeNeedViewController.m; sourceTree = "<group>"; };
 		89EFB6FC1D18D38F00B83BEF /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		89EFB6FD1D18D38F00B83BEF /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		89EFB6FE1D18D38F00B83BEF /* about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@3x.png"; sourceTree = "<group>"; };
@@ -418,7 +438,6 @@
 		8930804E1D1286AD00960923 /* wyMange */ = {
 			isa = PBXGroup;
 			children = (
-				89EAF3D51D1A12B4005AFA05 /* myInfo */,
 				8930804F1D1286D100960923 /* repairViewController.h */,
 				893080501D1286D100960923 /* repairViewController.m */,
 				893080521D1286F700960923 /* complainViewController.h */,
@@ -628,6 +647,7 @@
 		897B2FE01D0509B900218E4E /* Proprietor */ = {
 			isa = PBXGroup;
 			children = (
+				89CFAE361D2218BF00C1EDFB /* myInfo */,
 				89EAF4291D1A5D9E005AFA05 /* Ratree */,
 				89EFB71D1D18D43C00B83BEF /* stdPackect */,
 				89D282A21D139B0A00B91834 /* model */,
@@ -675,6 +695,23 @@
 			path = ProprietorUITests;
 			sourceTree = "<group>";
 		};
+		89CFAE361D2218BF00C1EDFB /* myInfo */ = {
+			isa = PBXGroup;
+			children = (
+				89CFAE371D2218BF00C1EDFB /* carRoomViewController.h */,
+				89CFAE381D2218BF00C1EDFB /* carRoomViewController.m */,
+				89CFAE391D2218BF00C1EDFB /* carSeatViewController.h */,
+				89CFAE3A1D2218BF00C1EDFB /* carSeatViewController.m */,
+				89CFAE3B1D2218BF00C1EDFB /* feeNeedViewController.h */,
+				89CFAE3C1D2218BF00C1EDFB /* feeNeedViewController.m */,
+				89CFAE3D1D2218BF00C1EDFB /* HomeInfoViewController.h */,
+				89CFAE3E1D2218BF00C1EDFB /* HomeInfoViewController.m */,
+				89CFAE3F1D2218BF00C1EDFB /* personInfoViewController.h */,
+				89CFAE401D2218BF00C1EDFB /* personInfoViewController.m */,
+			);
+			path = myInfo;
+			sourceTree = "<group>";
+		};
 		89D2829E1D13812300B91834 /* tableCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,25 +736,20 @@
 				890681B41D20F8DE000605EA /* complainTypeModel.m */,
 				890681B61D211B94000605EA /* complainListModel.h */,
 				890681B71D211B94000605EA /* complainListModel.m */,
+				89CFAE301D22045C00C1EDFB /* mendTypeModel.h */,
+				89CFAE311D22045C00C1EDFB /* mendTypeModel.m */,
+				89CFAE331D2206CC00C1EDFB /* mendStateModel.h */,
+				89CFAE341D2206CC00C1EDFB /* mendStateModel.m */,
+				89CFAE481D22437A00C1EDFB /* familyNumberModel.h */,
+				89CFAE491D22437A00C1EDFB /* familyNumberModel.m */,
+				89CFAE4B1D2257A300C1EDFB /* ownerRoomModel.h */,
+				89CFAE4C1D2257A300C1EDFB /* ownerRoomModel.m */,
+				89CFAE4E1D2261CA00C1EDFB /* carSeatModel.h */,
+				89CFAE4F1D2261CA00C1EDFB /* carSeatModel.m */,
+				89CFAE511D226F1A00C1EDFB /* carRoomModel.h */,
+				89CFAE521D226F1A00C1EDFB /* carRoomModel.m */,
 			);
 			path = model;
-			sourceTree = "<group>";
-		};
-		89EAF3D51D1A12B4005AFA05 /* myInfo */ = {
-			isa = PBXGroup;
-			children = (
-				89EAF3D61D1A12ED005AFA05 /* personInfoViewController.h */,
-				89EAF3D71D1A12ED005AFA05 /* personInfoViewController.m */,
-				89EAF43E1D1A7C4F005AFA05 /* HomeInfoViewController.h */,
-				89EAF43F1D1A7C4F005AFA05 /* HomeInfoViewController.m */,
-				89EAF4411D1A873B005AFA05 /* carRoomViewController.h */,
-				89EAF4421D1A873B005AFA05 /* carRoomViewController.m */,
-				89EAF4441D1A8807005AFA05 /* carSeatViewController.h */,
-				89EAF4451D1A8807005AFA05 /* carSeatViewController.m */,
-				89EAF4471D1A8937005AFA05 /* feeNeedViewController.h */,
-				89EAF4481D1A8937005AFA05 /* feeNeedViewController.m */,
-			);
-			path = myInfo;
 			sourceTree = "<group>";
 		};
 		89EAF4291D1A5D9E005AFA05 /* Ratree */ = {
@@ -735,6 +767,7 @@
 		89EFB71D1D18D43C00B83BEF /* stdPackect */ = {
 			isa = PBXGroup;
 			children = (
+				89CFAE461D221F2B00C1EDFB /* NullSafe.m */,
 				89EFB71E1D18D43C00B83BEF /* stdCallBtn.h */,
 				89EFB71F1D18D43C00B83BEF /* stdCallBtn.m */,
 				89EFB7201D18D43C00B83BEF /* stdCellVc.h */,
@@ -1050,36 +1083,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89EAF3D81D1A12ED005AFA05 /* personInfoViewController.m in Sources */,
 				897B2FE91D0509B900218E4E /* ViewController.m in Sources */,
 				897B2FEF1D0509B900218E4E /* Proprietor.xcdatamodeld in Sources */,
 				890681B21D20C2D6000605EA /* baoxiuModel.m in Sources */,
 				895C34401D0E7F84009F793D /* MyInfoViewController.m in Sources */,
+				89CFAE441D2218BF00C1EDFB /* HomeInfoViewController.m in Sources */,
 				89EFB7221D18D43C00B83BEF /* stdCallBtn.m in Sources */,
+				89CFAE421D2218BF00C1EDFB /* carSeatViewController.m in Sources */,
 				890681AF1D20ADEA000605EA /* loginInfo.m in Sources */,
 				89D282B41D13C72700B91834 /* addRepairViewController.m in Sources */,
+				89CFAE501D2261CA00C1EDFB /* carSeatModel.m in Sources */,
+				89CFAE451D2218BF00C1EDFB /* personInfoViewController.m in Sources */,
 				895C34141D0E7ABF009F793D /* LoginViewController.m in Sources */,
 				893356631D17B7A400B85B1C /* addComplainViewController.m in Sources */,
+				89CFAE471D221F2B00C1EDFB /* NullSafe.m in Sources */,
 				895C34341D0E7EC9009F793D /* StdRootController.m in Sources */,
+				89CFAE351D2206CC00C1EDFB /* mendStateModel.m in Sources */,
 				893080541D1286F700960923 /* complainViewController.m in Sources */,
-				89EAF4431D1A873B005AFA05 /* carRoomViewController.m in Sources */,
 				89EAF4301D1A5D9E005AFA05 /* RATableViewCell.m in Sources */,
 				890681B81D211B94000605EA /* complainListModel.m in Sources */,
+				89CFAE4A1D22437A00C1EDFB /* familyNumberModel.m in Sources */,
 				893080511D1286D100960923 /* repairViewController.m in Sources */,
 				89EAF3DE1D1A22F9005AFA05 /* personInfoMode.m in Sources */,
 				89EFB7231D18D43C00B83BEF /* stdCellVc.m in Sources */,
+				89CFAE321D22045C00C1EDFB /* mendTypeModel.m in Sources */,
 				8930805A1D12872300960923 /* contactUsViewController.m in Sources */,
-				89EAF4401D1A7C4F005AFA05 /* HomeInfoViewController.m in Sources */,
 				893080571D12870500960923 /* noticeViewController.m in Sources */,
 				89D282A51D139B4000B91834 /* repairTableModel.m in Sources */,
 				89D282A11D13817100B91834 /* ListTableViewCell.m in Sources */,
+				89CFAE4D1D2257A300C1EDFB /* ownerRoomModel.m in Sources */,
+				89CFAE411D2218BF00C1EDFB /* carRoomViewController.m in Sources */,
 				895C343A1D0E7F23009F793D /* WyMangerViewController.m in Sources */,
 				897B2FE61D0509B900218E4E /* AppDelegate.m in Sources */,
 				89EAF42F1D1A5D9E005AFA05 /* RADataObject.m in Sources */,
-				89EAF4461D1A8807005AFA05 /* carSeatViewController.m in Sources */,
 				895C34371D0E7EEF009F793D /* HomeViewController.m in Sources */,
+				89CFAE531D226F1A00C1EDFB /* carRoomModel.m in Sources */,
 				890681B51D20F8DE000605EA /* complainTypeModel.m in Sources */,
-				89EAF4491D1A8937005AFA05 /* feeNeedViewController.m in Sources */,
+				89CFAE431D2218BF00C1EDFB /* feeNeedViewController.m in Sources */,
 				895C343D1D0E7F37009F793D /* ShopViewController.m in Sources */,
 				897B2FE31D0509B900218E4E /* main.m in Sources */,
 			);

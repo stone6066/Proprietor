@@ -116,12 +116,12 @@
     if (sender.tag==0) {//未受理
         _listType=0;
         _pageindex=1;
-        [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+        [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
             }
     else{
         _listType=1;
         _pageindex=1;
-        [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+        [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
     }
     NSLog(@"%ld",sender.tag);
     
@@ -164,7 +164,7 @@ static NSString * const MarketCellId = @"repairTableCell";
     
     _pageindex=1;
     _listType=0;
-    [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+    [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
     //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
     
     
@@ -173,7 +173,7 @@ static NSString * const MarketCellId = @"repairTableCell";
     __unsafe_unretained __typeof(self) weakSelf = self;
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _pageindex=1;
-        [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+        [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
         [weakSelf.TableView.mj_header endRefreshing];
         // 进入刷新状态后会自动调用这个block
     }];
@@ -183,12 +183,12 @@ static NSString * const MarketCellId = @"repairTableCell";
         // 进入刷新状态后会自动调用这个block
         if (_tableDataSource.count>0) {
             _pageindex+=1;
-            [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+            [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
         }
         else
         {
             _pageindex=1;
-            [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
+            [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
         }
         
         // 结束刷新
@@ -246,10 +246,10 @@ static NSString * const MarketCellId = @"repairTableCell";
     
     NSString *urlstr=@"";
     if (_listType==0) {
-         urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/mend/notaccept?communityId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
+         urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/mend/notaccept?ownerId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
     }
     else
-        urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/mend/accept?communityId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
+        urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/mend/accept?ownerId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
     NSLog(@"baoxiuurlstr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict

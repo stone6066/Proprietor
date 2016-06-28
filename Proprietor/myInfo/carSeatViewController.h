@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <RATreeView/RATreeView.h>
 @interface carSeatViewController : UIViewController
-@property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) NSMutableArray *RaData;
 @property (weak, nonatomic) RATreeView *treeView;
 @end

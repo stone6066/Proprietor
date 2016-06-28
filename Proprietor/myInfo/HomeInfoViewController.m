@@ -1,40 +1,48 @@
 //
-//  feeNeedViewController.m
+//  HomeInfoViewController.m
 //  Proprietor
 //
 //  Created by tianan-apple on 16/6/22.
 //  Copyright © 2016年 tianan-apple. All rights reserved.
 //
 
-#import "feeNeedViewController.h"
+#import "HomeInfoViewController.h"
 #import "PublicDefine.h"
 #import "personInfoMode.h"
 #import "RADataObject.h"
 #import "RATableViewCell.h"
-@interface feeNeedViewController ()<RATreeViewDelegate, RATreeViewDataSource>
-
+#import "ownerRoomModel.h"
+@interface HomeInfoViewController ()<RATreeViewDelegate, RATreeViewDataSource>
+{
+    NSMutableArray *_tableDataSource;
+}
 @end
 
-@implementation feeNeedViewController
+@implementation HomeInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tableDataSource=[[NSMutableArray alloc]init];
+     _RaData=[[NSMutableArray alloc]init];
     self.view.backgroundColor=MyGrayColor;
     [self loadTopNav];
-    [self loadFeeNeed];
+    //[self loadHomeBuilding];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId];
+}
 -(void)loadTopNav{
     UIView *TopView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, fDeviceWidth, TopSeachHigh)];
     TopView.backgroundColor=topSearchBgdColor;//[UIColor redColor];
     float lblWidth=4*20;
     UILabel *topLbl=[[UILabel alloc]initWithFrame:CGRectMake((fDeviceWidth-lblWidth)/2, 18, lblWidth, 40)];
-    topLbl.text=@"欠费信息";
+    topLbl.text=@"房屋信息";
     [topLbl setTextColor:[UIColor whiteColor]];
     
     [TopView addSubview:topLbl];
@@ -53,10 +61,7 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
--(void)loadFeeNeed{
-    [self loadData];
-    
-    
+-(void)loadHomeBuilding{
     RATreeView *treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, TopSeachHigh, fDeviceWidth, fDeviceHeight-TopSeachHigh)];
     
     treeView.delegate = self;
@@ -80,10 +85,10 @@
     
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.title = NSLocalizedString(@"Things", nil);
-    
+   
     
     [self.treeView registerNib:[UINib nibWithNibName:NSStringFromClass([RATableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([RATableViewCell class])];
-    
+
     
 }
 
@@ -97,25 +102,19 @@
 
 - (void)loadData
 {
-    RADataObject *phone1 = [RADataObject dataObjectWithName:@"电话：13798098876" children:nil];
-    RADataObject *phone2 = [RADataObject dataObjectWithName:@"出生日期：1989-09-08" children:nil];
-    RADataObject *phone3 = [RADataObject dataObjectWithName:@"单位：阿里巴巴（中国）投资股份有限公司" children:nil];
-    RADataObject *phone4 = [RADataObject dataObjectWithName:@"与业主关系：夫妻" children:nil];
-    
-    RADataObject *phone = [RADataObject dataObjectWithName:@"刘伟"
-                                                  children:[NSArray arrayWithObjects:phone1, phone2, phone3, phone4, nil]];
-    
-    
-    
-    RADataObject *computer1 = [RADataObject dataObjectWithName:@"电话：13798098876"children:nil];
-    RADataObject *computer2 = [RADataObject dataObjectWithName:@"出生日期：1989-09-08" children:nil];
-    RADataObject *computer3 = [RADataObject dataObjectWithName:@"单位：阿里巴巴（中国）投资股份有限公司" children:nil];
-    RADataObject *computer4 = [RADataObject dataObjectWithName:@"与业主关系：父子" children:nil];
-    RADataObject *computer = [RADataObject dataObjectWithName:@"马航"
-                                                     children:[NSArray arrayWithObjects:computer1, computer2, computer3,computer4, nil]];
-    
-    
-    self.data = [NSArray arrayWithObjects:phone, computer,  nil];
+    [_RaData removeAllObjects];
+    for (ownerRoomModel *roomObj in _tableDataSource) {
+        
+        RADataObject *Raobj1 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"小区名称：",ApplicationDelegate.myLoginInfo.communityName] children:nil];
+        RADataObject *Raobj2 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"门牌号：",roomObj.roomsNumber] children:nil];
+        RADataObject *Raobj3 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"建筑面积：",roomObj.roomsBuildingarea] children:nil];
+        RADataObject *Raobj4 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"使用面积：",roomObj.roomsUsearea] children:nil];
+        
+        RADataObject *Raobj = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",ApplicationDelegate.myLoginInfo.communityName,roomObj.roomsNumber]
+                                                      children:[NSArray arrayWithObjects:Raobj1, Raobj2, Raobj3,Raobj4, nil]];
+        [_RaData addObject:Raobj];
+    }
+    [self loadHomeBuilding];
     
 }
 
@@ -153,10 +152,10 @@
     NSInteger index = 0;
     
     if (parent == nil) {
-        index = [self.data indexOfObject:item];
-        NSMutableArray *children = [self.data mutableCopy];
+        index = [self.RaData indexOfObject:item];
+        NSMutableArray *children = [self.RaData mutableCopy];
         [children removeObject:item];
-        self.data = [children copy];
+        self.RaData = [children copy];
         
     } else {
         index = [parent.children indexOfObject:item];
@@ -188,7 +187,7 @@
     else
         iconview=@"verticalLine";
     
-    [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded iocnName:iconview];
+    [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded iocnName:iconview isPhone:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     __weak typeof(self) weakSelf = self;
@@ -208,7 +207,7 @@
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item
 {
     if (item == nil) {
-        return [self.data count];
+        return [self.RaData count];
     }
     
     RADataObject *data = item;
@@ -219,11 +218,63 @@
 {
     RADataObject *data = item;
     if (item == nil) {
-        return [self.data objectAtIndex:index];
+        return [self.RaData objectAtIndex:index];
     }
     
     return data.children[index];
 }
 
+
+
+-(void)loadTableData:(NSString*)uid {
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                };
+    //http://192.168.0.21:8080/propies/owner/rooms?communityId=6&ownerId=356
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@",BaseUrl,@"propies/owner/rooms?communityId=",ApplicationDelegate.myLoginInfo.communityId,@"&ownerId=",uid];
+    
+    NSLog(@"roomstr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"result"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"true"]) {
+                                              //成功
+                                              
+                                              [SVProgressHUD dismiss];
+                                              ownerRoomModel *SM=[[ownerRoomModel alloc]init];
+                                              _tableDataSource=[SM asignModelWithDict:jsonDic];
+                                              [self loadData];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      
+                                  }];
+    
+}
 
 @end

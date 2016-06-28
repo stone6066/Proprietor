@@ -40,7 +40,15 @@
     
     if(![[dicttmp objectForKey:@"ownerBirthday"] isEqual:[NSNull null]])
          LGInfo.ownerBirthday=[self stdTimeToStr:[[dicttmp objectForKey:@"ownerBirthday"]stringValue]];
+        
+    LGInfo.ownerSex=[dicttmp objectForKey:@"ownerSex"];
+    LGInfo.ownerDocumentnumber=[dicttmp objectForKey:@"ownerDocumentnumber"];
+    LGInfo.documenttypeId=[dicttmp objectForKey:@"documenttypeId"];
+    LGInfo.communityName=[dicttmp objectForKey:@"communityName"];
     }
+    
+
+
     //NSLog(@"ownerId:%@",LGInfo.ownerId);
     return LGInfo;
     

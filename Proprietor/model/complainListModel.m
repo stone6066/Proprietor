@@ -16,10 +16,12 @@
     {
         for (NSDictionary *dict in dictArray) {
             complainListModel *NM=[[complainListModel alloc]init];
-            NM.mendId = [[dict objectForKey:@"mendId"]stringValue];
-            NM.mendTitle = [dict objectForKey:@"mendTitle"];
-            NM.reportTime =[self stdTimeToStr:[dict objectForKey:@"reportTime"]];
-            NM.mendState = [dict objectForKey:@"mendState"];
+            NM.communityId = [[dict objectForKey:@"communityId"]stringValue];
+            NM.complaintId = [[dict objectForKey:@"complaintId"]stringValue];
+
+            NM.complaintContent = [dict objectForKey:@"complaintContent"];
+            NM.complaintCreatetime =[self stdTimeToStr:[[dict objectForKey:@"complaintCreatetime"]stringValue]];
+            NM.complaintStatusName = [dict objectForKey:@"complaintStatusName"];
             [arr addObject:NM];
         }
         

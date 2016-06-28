@@ -8,12 +8,16 @@
 
 #import "addRepairViewController.h"
 #import "PublicDefine.h"
-
+#import "mendTypeModel.h"
+#import "mendStateModel.h"
 @interface addRepairViewController ()<UITextFieldDelegate>
 {
     NSMutableArray *pickerArr;
-    NSArray *typeArr;
     NSArray *stateArr;
+    NSMutableArray *typeArr;//picker名字
+    NSMutableArray *typeDataArr;//名字、id
+    mendTypeModel *mendTypeData;
+    mendStateModel *mendStateData;
 }
 @end
 
@@ -21,7 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    typeArr=[[NSMutableArray alloc]init];
+    typeDataArr=[[NSMutableArray alloc]init];
     [self loadTopNav];
     self.view.backgroundColor=MyGrayColor;
     [self loadAddView];
@@ -36,8 +41,8 @@
 }
 
 -(void)loadPickViewWithToolBar{
-    typeArr=[[NSArray alloc]initWithObjects:@"电梯",@"煤气",@"水电",@"其他", nil];
-    stateArr=[[NSArray alloc]initWithObjects:@"紧急",@"一般",@"不急",@"其他", nil];
+//    typeArr=[[NSArray alloc]initWithObjects:@"电梯",@"煤气",@"水电",@"其他", nil];
+//    stateArr=[[NSArray alloc]initWithObjects:@"紧急",@"一般",@"不急",@"其他", nil];
     pickerArr=[[NSMutableArray alloc]init];
     self.pView=[[UIView alloc]initWithFrame:CGRectMake(0, fDeviceHeight-300, fDeviceWidth, 250)];
     self.pickerView=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 40, fDeviceWidth, 210)];
@@ -68,6 +73,31 @@
 }
 -(void)okClickbtn{
     self.pView.hidden=YES;
+    if (_pickerType==0) {
+        if (mendTypeData) {
+            _repairType.text=mendTypeData.mendTypeName;
+        }
+        else
+        {
+            mendTypeData=[typeDataArr objectAtIndex:0];
+            _repairType.text=mendTypeData.mendTypeName;
+            
+        }
+    }
+    else{
+        if (mendStateData) {
+            _repairState.text=mendStateData.mendLevelName;
+        }
+        else
+        {
+            mendStateData=[typeDataArr objectAtIndex:0];
+            _repairState.text=mendStateData.mendLevelName;
+            
+        }
+    }
+    
+
+    
     NSLog(@"ok");
 }
 -(void)cancleClickbtn{
@@ -152,13 +182,17 @@
 
 -(void)stateClickBtn{
     self.pView.hidden=NO;
-    [self loadPickerView:stateArr];
+    _pickerType=1;
+    [self loadTypeData];
+    //[self loadPickerView:stateArr];
     NSLog(@"state点击");
 }
 
 -(void)typeClickBtn{
     self.pView.hidden=NO;
-    [self loadPickerView:typeArr];
+    _pickerType=0;
+    [self loadTypeData];
+    //[self loadPickerView:typeArr];
     NSLog(@"lbltype点击");
 }
 -(void)stdInitTxtF:(UITextField*)txtF hintxt:(NSString*)hintstr{
@@ -189,6 +223,7 @@
 -(void)stdAddClick{
 //    addRepairViewController *addView=[[addRepairViewController alloc]init];
 //    [self.navigationController pushViewController:addView animated:NO];
+    [self addMendToSrv];
     NSLog(@"提交报修");
 }
 -(void)textfieldRecognizer{
@@ -265,7 +300,143 @@
 
 //被选择的行
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if (_pickerType==0) {
+        mendTypeData=[typeDataArr objectAtIndex:row];
+    }
+    else
+        mendStateData=[typeDataArr objectAtIndex:row];
     NSLog(@"选择:%@",[pickerArr objectAtIndex:row]);
+    
+}
+
+
+-(void)loadTypeData{
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                };
+    
+    //http://192.168.0.21:8080/propies/complaint/type
+    NSString *urlstr=@"";
+    if (_pickerType==0) {
+        urlstr=[NSString stringWithFormat:@"%@%@",BaseUrl,@"propies/mend/type"];
+    }
+    else
+        urlstr=[NSString stringWithFormat:@"%@%@",BaseUrl,@"propies/mend/level"];
+    
+    NSLog(@"baoxiuurlstr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"result"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"true"]) {
+                                              //成功
+                                              
+                                              [self operateData:jsonDic];
+                                              
+                                              [SVProgressHUD dismiss];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      
+                                  }];
+    
+}
+
+-(void)operateData:(NSDictionary*)jsonData{
+    if (_pickerType==0) {
+        mendTypeModel *mtm=[[mendTypeModel alloc]init];
+        typeDataArr=[mtm asignModelWithDict:jsonData];
+        [typeArr removeAllObjects];
+        for (mendTypeModel *CM in typeDataArr)
+        {
+            [typeArr addObject:CM.mendTypeName];
+        }
+
+    }
+    else{
+        mendStateModel *mtm=[[mendStateModel alloc]init];
+        typeDataArr=[mtm asignModelWithDict:jsonData];
+        [typeArr removeAllObjects];
+        for (mendStateModel *CM in typeDataArr)
+        {
+            [typeArr addObject:CM.mendLevelName];
+        }
+    }
+    self.pView.hidden=NO;
+    [self loadPickerView:typeArr];
+
+}
+
+
+-(void)addMendToSrv{
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                };
+    
+ // http://192.168.0.21:8080/propies/mend/mendadd?mendType=1&mendLevel=1&communityId=6&roomsId=1
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies//mend/mendadd?mendType=",mendTypeData.mendTypeId,@"&mendLevel=",mendStateData.mendLevelId,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId,@"&mendTitle=",_repairTitle.text,@"&mendDesc=",_repaitText.text,@"&phoneNumber=",ApplicationDelegate.myLoginInfo.ownerPhone,@"&deleteStstus=0"];
+    NSLog(@"addbaoxiustr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"result"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"true"]) {
+                                              
+                                              [SVProgressHUD dismiss];
+                                              [self clickleftbtn];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      
+                                  }];
     
 }
 @end

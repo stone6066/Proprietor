@@ -20,6 +20,7 @@
 
 #import "RATableViewCell.h"
 #import "PublicDefine.h"
+#import "stdCallBtn.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -52,9 +53,30 @@
 }
 
 
-- (void)setupWithTitle:(NSString *)title detailText:(NSString *)detailText level:(NSInteger)level additionButtonHidden:(BOOL)additionButtonHidden iocnName:(NSString*)namestr
+- (void)setupWithTitle:(NSString *)title detailText:(NSString *)detailText level:(NSInteger)level additionButtonHidden:(BOOL)additionButtonHidden iocnName:(NSString*)namestr isPhone:(NSInteger)isphone
 {
     self.customTitleLabel.text = title;
+    CGFloat left ;
+    if (level==0) {
+        left = 50 + 20 * level;
+    }
+    else
+        left = 25 + 20 * level;
+    
+    CGRect titleFrame = self.customTitleLabel.frame;
+    titleFrame.origin.x = left;
+    self.customTitleLabel.frame = titleFrame;
+    self.customTitleLabel.hidden=NO;
+    
+    if (isphone==0) {//电话号码
+        _TitleLbl=[[stdCallBtn alloc]initWithFrame:CGRectMake(left, 11, 245, 21)];
+        [_TitleLbl setLblText:title];
+        [self addSubview:_TitleLbl];
+        self.customTitleLabel.hidden=YES;
+    }
+    else
+       _TitleLbl.hidden=YES;
+    
     self.additionButtonHidden = additionButtonHidden;
   
     if (level == 0) {
@@ -69,16 +91,7 @@
 //        self.backgroundColor = UIColorFromRGB(0xE0F8D8);
 //    }
   
-    CGFloat left ;
-    if (level==0) {
-        left = 50 + 20 * level;
-    }
-    else
-        left = 25 + 20 * level;
-    
-    CGRect titleFrame = self.customTitleLabel.frame;
-    titleFrame.origin.x = left;
-    self.customTitleLabel.frame = titleFrame;
+   
   
     self.cellIcon.image=[UIImage imageNamed:namestr];
     left = 20 + 20 * level;

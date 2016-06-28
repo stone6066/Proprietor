@@ -22,12 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _pageindex=0;
+    _pageindex=1;
     _tableDataSource=[[NSMutableArray alloc]init];
      [self loadTableView];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    _pageindex=0;
+    _pageindex=1;
     [self loadTableData:ApplicationDelegate.myLoginInfo.communityId pageNo:_pageindex];
 }
 - (void)didReceiveMemoryWarning {
@@ -130,10 +130,10 @@ static NSString * const MarketCellId = @"repairTableCell";
     NSDictionary *paramDict = @{
                                 @"ut":@"indexVilliageGoods",
                                 };
-    //http://localhost:8080/propies/index/notice?communityId=1&page=1&pagesize=20
+   // http://localhost:8080/propies/index/notice?communityId=1&page=1&pagesize=20
    // NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/index/notice?communityId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
-    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@",BaseUrl,@"propies/index/notice?communityId=",uid,@"&page=0",@"&pagesize=20"];
-    NSLog(@"homestr:%@",urlstr);
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/index/notice?communityId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];
+    NSLog(@"noticestr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}

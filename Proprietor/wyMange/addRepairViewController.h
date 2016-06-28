@@ -15,4 +15,5 @@
 @property(nonatomic,strong)UITextField *repaitText;//内容
 @property(nonatomic,strong)UIPickerView *pickerView;
 @property(nonatomic,strong)UIView *pView;
+@property(nonatomic,assign)NSInteger pickerType;//0类型  1状态
 @end

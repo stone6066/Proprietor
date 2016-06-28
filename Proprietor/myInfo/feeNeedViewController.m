@@ -1,33 +1,27 @@
 //
-//  personInfoViewController.m
+//  feeNeedViewController.m
 //  Proprietor
 //
 //  Created by tianan-apple on 16/6/22.
 //  Copyright © 2016年 tianan-apple. All rights reserved.
 //
 
-#import "personInfoViewController.h"
+#import "feeNeedViewController.h"
 #import "PublicDefine.h"
-#import "stdCellVc.h"
 #import "personInfoMode.h"
 #import "RADataObject.h"
 #import "RATableViewCell.h"
-
-
-@interface personInfoViewController ()<RATreeViewDelegate, RATreeViewDataSource>
+@interface feeNeedViewController ()<RATreeViewDelegate, RATreeViewDataSource>
 
 @end
 
-@implementation personInfoViewController
+@implementation feeNeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=MyGrayColor;
-    _showType=0;
     [self loadTopNav];
-    [self drawSegmentedView];
-    [self loadPersonContent];
-    // Do any additional setup after loading the view.
+    [self loadFeeNeed];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +34,7 @@
     TopView.backgroundColor=topSearchBgdColor;//[UIColor redColor];
     float lblWidth=4*20;
     UILabel *topLbl=[[UILabel alloc]initWithFrame:CGRectMake((fDeviceWidth-lblWidth)/2, 18, lblWidth, 40)];
-    topLbl.text=@"个人信息";
+    topLbl.text=@"欠费信息";
     [topLbl setTextColor:[UIColor whiteColor]];
     
     [TopView addSubview:topLbl];
@@ -59,89 +53,11 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-
--(void)drawSegmentedView{
-    NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"基础信息",@"家庭成员",nil];
-    //初始化UISegmentedControl
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
-    CGFloat sgWidth=fDeviceWidth-80;
-    segmentedControl.frame = CGRectMake(40,TopSeachHigh+10,sgWidth,30);
-    // 设置默认选择项索引
-    segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.tintColor = topSearchBgdColor;
-    
-    [segmentedControl addTarget:self action:@selector(didClicksegmentedControlAction:)forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:segmentedControl];
-}
-
--(void)didClicksegmentedControlAction:(UISegmentedControl *)Seg{
-    NSInteger Index = Seg.selectedSegmentIndex;
-    NSLog(@"Index %ld", (long)Index);
-    [_contentVc removeFromSuperview];
-    switch (Index) {
-        case 0:
-            
-            [self loadPersonContent];
-            break;
-        case 1:
-            [self loadFamliyNumbers];
-            break;
-            
-        default:
-            break;
-    }
-    _showType=Index;
-}
-
--(void)loadPersonContent{
-    personInfoMode *PM=[[personInfoMode alloc]init];
-    PM.name=@"斯蒂芬";
-    PM.telphone=@"13796224528";
-    PM.cardType=@"身份证";
-    PM.cardNum=@"231023198312092215";
-    PM.birthday=@"1989-09-21";
-    PM.workInfo=@"天安在线信息技术有限公司";
-    
-    _contentVc=[[UIView alloc]initWithFrame:CGRectMake(0, TopSeachHigh+50, fDeviceWidth, 310)];
-   
-    CGFloat firstY=0;
-    CGRect firstCG=CGRectMake(0, firstY, fDeviceWidth, 50);
-    stdCellVc *personInfo=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"contact" titleName:@"姓       名：" txtName:PM.name lookImg:@"" sendid:1];
-    [_contentVc addSubview:personInfo];
-    
-    firstY=firstY+51;
-    firstCG=CGRectMake(0, firstY, fDeviceWidth, 50);
-    stdCellVc *telInfo=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"tel" titleName:@"联系电话：" txtName:PM.telphone lookImg:@"" sendid:1];
-    [_contentVc addSubview:telInfo];
-    
-    firstY=firstY+51;
-    firstCG=CGRectMake(0, firstY, fDeviceWidth, 50);
-    stdCellVc *cardType=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"personInfo" titleName:@"证件类型：" txtName:PM.cardType lookImg:@"" sendid:1];
-    [_contentVc addSubview:cardType];
-    
-    firstY=firstY+51;
-    firstCG=CGRectMake(0, firstY, fDeviceWidth, 50);
-    stdCellVc *cardNum=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"card" titleName:@"证件号码：" txtName:PM.cardNum lookImg:@"" sendid:1];
-    [_contentVc addSubview:cardNum];
-    
-    firstY=firstY+51;
-    firstCG=CGRectMake(0, firstY, fDeviceWidth, 50);
-    stdCellVc *birthday=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"date" titleName:@"出生日期：" txtName:PM.birthday lookImg:@"" sendid:1];
-    [_contentVc addSubview:birthday];
-    
-    firstY=firstY+51;
-    firstCG=CGRectMake(0, firstY, fDeviceWidth, 50);
-    stdCellVc *workinfo=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"workCompany" titleName:@"工作单位：" txtName:PM.workInfo lookImg:@"" sendid:1];
-    [_contentVc addSubview:workinfo];
-    
-    [self.view addSubview:_contentVc];
-}
-
--(void)loadFamliyNumbers{
+-(void)loadFeeNeed{
     [self loadData];
-     _contentVc=[[UIView alloc]initWithFrame:CGRectMake(0, TopSeachHigh+50, fDeviceWidth, fDeviceHeight-TopSeachHigh-50-50)];
     
-    RATreeView *treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, 0, fDeviceWidth, fDeviceHeight-TopSeachHigh-50-50)];
+    
+    RATreeView *treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, TopSeachHigh, fDeviceWidth, fDeviceHeight-TopSeachHigh)];
     
     treeView.delegate = self;
     treeView.dataSource = self;
@@ -157,32 +73,19 @@
     
     
     self.treeView = treeView;
-    self.treeView.frame = CGRectMake(0, 0, fDeviceWidth, fDeviceHeight-TopSeachHigh-50-50);
+    self.treeView.frame = CGRectMake(0, TopSeachHigh, fDeviceWidth, fDeviceHeight-TopSeachHigh);
     self.treeView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [_contentVc insertSubview:treeView atIndex:0];
+    [self.view  insertSubview:treeView atIndex:0];
     
     
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.title = NSLocalizedString(@"Things", nil);
-    //[self updateNavigationItemButton];
+    
     
     [self.treeView registerNib:[UINib nibWithNibName:NSStringFromClass([RATableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([RATableViewCell class])];
-    [self.view addSubview:_contentVc];
+    
+    
 }
-
-
-//- (void)updateNavigationItemButton
-//{
-//    UIBarButtonSystemItem systemItem = self.treeView.isEditing ? UIBarButtonSystemItemDone : UIBarButtonSystemItemEdit;
-//    self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:systemItem target:self action:@selector(editButtonTapped:)];
-//    self.navigationItem.rightBarButtonItem = self.editButton;
-//}
-
-//- (void)editButtonTapped:(id)sender
-//{
-//    [self.treeView setEditing:!self.treeView.isEditing animated:YES];
-//    [self updateNavigationItemButton];
-//}
 
 - (void)refreshControlChanged:(UIRefreshControl *)refreshControl
 {
@@ -202,7 +105,7 @@
     RADataObject *phone = [RADataObject dataObjectWithName:@"刘伟"
                                                   children:[NSArray arrayWithObjects:phone1, phone2, phone3, phone4, nil]];
     
-   
+    
     
     RADataObject *computer1 = [RADataObject dataObjectWithName:@"电话：13798098876"children:nil];
     RADataObject *computer2 = [RADataObject dataObjectWithName:@"出生日期：1989-09-08" children:nil];
@@ -210,7 +113,7 @@
     RADataObject *computer4 = [RADataObject dataObjectWithName:@"与业主关系：父子" children:nil];
     RADataObject *computer = [RADataObject dataObjectWithName:@"马航"
                                                      children:[NSArray arrayWithObjects:computer1, computer2, computer3,computer4, nil]];
-   
+    
     
     self.data = [NSArray arrayWithObjects:phone, computer,  nil];
     
@@ -278,14 +181,14 @@
     BOOL expanded = [self.treeView isCellForItemExpanded:item];
     
     RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
-   NSString *iconview;
+    NSString *iconview;
     if (level==0) {
         iconview=@"contact";
     }
     else
         iconview=@"verticalLine";
     
-    [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded iocnName:iconview];
+    [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded iocnName:iconview isPhone:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     __weak typeof(self) weakSelf = self;

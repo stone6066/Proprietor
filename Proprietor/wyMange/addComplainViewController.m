@@ -318,7 +318,7 @@
                                 @"ut":@"indexVilliageGoods",
                                 };
     
-   // http://192.168.0.21:8080/propies/complaint/complaintadd?complaintTypeId=1&complaintContent=阿瓦达阿瓦达&communityId=1&roomsId=1
+  
     NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies/complaint/complaintadd?complaintTypeId=",compainData.complaintTypeId,@"&complaintContent=",_repaitText.text,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId];
     NSLog(@"baoxiuurlstr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr

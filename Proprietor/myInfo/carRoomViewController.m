@@ -11,20 +11,28 @@
 #import "personInfoMode.h"
 #import "RADataObject.h"
 #import "RATableViewCell.h"
+#import "carRoomModel.h"
 
 @interface carRoomViewController ()<RATreeViewDelegate, RATreeViewDataSource>
-
+{
+    NSMutableArray *_tableDataSource;
+}
 @end
 
 @implementation carRoomViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tableDataSource=[[NSMutableArray alloc]init];
+    _RaData=[[NSMutableArray alloc]init];
+    
     self.view.backgroundColor=MyGrayColor;
     [self loadTopNav];
-    [self loadCarRoom];
+    //[self loadCarRoom];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -55,7 +63,7 @@
 }
 
 -(void)loadCarRoom{
-    [self loadData];
+    
     
     
     RATreeView *treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, TopSeachHigh, fDeviceWidth, fDeviceHeight-TopSeachHigh)];
@@ -98,26 +106,27 @@
 
 - (void)loadData
 {
-    RADataObject *phone1 = [RADataObject dataObjectWithName:@"电话：13798098876" children:nil];
-    RADataObject *phone2 = [RADataObject dataObjectWithName:@"出生日期：1989-09-08" children:nil];
-    RADataObject *phone3 = [RADataObject dataObjectWithName:@"单位：阿里巴巴（中国）投资股份有限公司" children:nil];
-    RADataObject *phone4 = [RADataObject dataObjectWithName:@"与业主关系：夫妻" children:nil];
+    [_RaData removeAllObjects];
+    for (carRoomModel *seatObj in _tableDataSource) {
+        
+        RADataObject *Raobj1 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"车库编号：",seatObj.garageNumber] children:nil];
+        RADataObject *Raobj2 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"车库面积：",seatObj.garageArea] children:nil];
+        NSInteger along=[seatObj.garageAlone integerValue];
+        NSString *dl=@"";
+        if (along==1) {
+            dl=@"是";
+        }
+        else
+            dl=@"否";
+        RADataObject *Raobj3 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"独立车库：",dl] children:nil];
+        
+        
+        RADataObject *Raobj = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@%@",ApplicationDelegate.myLoginInfo.communityName,@"-",seatObj.garageNumber]
+                                                      children:[NSArray arrayWithObjects:Raobj1, Raobj2, Raobj3, nil]];
+        [_RaData addObject:Raobj];
+    }
     
-    RADataObject *phone = [RADataObject dataObjectWithName:@"刘伟"
-                                                  children:[NSArray arrayWithObjects:phone1, phone2, phone3, phone4, nil]];
-    
-    
-    
-    RADataObject *computer1 = [RADataObject dataObjectWithName:@"电话：13798098876"children:nil];
-    RADataObject *computer2 = [RADataObject dataObjectWithName:@"出生日期：1989-09-08" children:nil];
-    RADataObject *computer3 = [RADataObject dataObjectWithName:@"单位：阿里巴巴（中国）投资股份有限公司" children:nil];
-    RADataObject *computer4 = [RADataObject dataObjectWithName:@"与业主关系：父子" children:nil];
-    RADataObject *computer = [RADataObject dataObjectWithName:@"马航"
-                                                     children:[NSArray arrayWithObjects:computer1, computer2, computer3,computer4, nil]];
-    
-    
-    self.data = [NSArray arrayWithObjects:phone, computer,  nil];
-    
+    [self loadCarRoom];
 }
 
 #pragma mark TreeView Delegate methods
@@ -154,10 +163,10 @@
     NSInteger index = 0;
     
     if (parent == nil) {
-        index = [self.data indexOfObject:item];
-        NSMutableArray *children = [self.data mutableCopy];
+        index = [self.RaData indexOfObject:item];
+        NSMutableArray *children = [self.RaData mutableCopy];
         [children removeObject:item];
-        self.data = [children copy];
+        self.RaData = [children copy];
         
     } else {
         index = [parent.children indexOfObject:item];
@@ -189,7 +198,7 @@
     else
         iconview=@"verticalLine";
     
-    [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded iocnName:iconview];
+    [cell setupWithTitle:dataObject.name detailText:detailText level:level additionButtonHidden:!expanded iocnName:iconview isPhone:1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     __weak typeof(self) weakSelf = self;
@@ -209,7 +218,7 @@
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item
 {
     if (item == nil) {
-        return [self.data count];
+        return [self.RaData count];
     }
     
     RADataObject *data = item;
@@ -220,11 +229,61 @@
 {
     RADataObject *data = item;
     if (item == nil) {
-        return [self.data objectAtIndex:index];
+        return [self.RaData objectAtIndex:index];
     }
     
     return data.children[index];
 }
 
-
+-(void)loadTableData:(NSString*)uid {
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                };
+    //http://192.168.0.21:8080/propies/owner/garage?communityId=6&ownerId=356
+   
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@",BaseUrl,@"propies/owner/garage?communityId=",ApplicationDelegate.myLoginInfo.communityId,@"&ownerId=",uid];
+    
+    NSLog(@"roomstr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"result"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"true"]) {
+                                              //成功
+                                              
+                                              [SVProgressHUD dismiss];
+                                              carRoomModel *SM=[[carRoomModel alloc]init];
+                                              _tableDataSource=[SM asignModelWithDict:jsonDic];
+                                              [self loadData];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      
+                                  }];
+    
+}
 @end

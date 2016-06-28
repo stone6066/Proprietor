@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface complainListModel : NSObject
-@property (nonatomic,copy)NSString *mendId;
-@property (nonatomic,copy)NSString *reportTime;
-@property (nonatomic,copy)NSString *mendTitle;
-@property (nonatomic,copy)NSString *mendState;
+@property (nonatomic,copy)NSString *complaintId;
+@property (nonatomic,copy)NSString *complaintContent;
+@property (nonatomic,copy)NSString *complaintCreatetime;
+@property (nonatomic,copy)NSString *communityId;
+@property (nonatomic,copy)NSString *complaintStatusName;
 - (NSMutableArray *)asignModelWithDict:(NSDictionary *)dict;
 @end

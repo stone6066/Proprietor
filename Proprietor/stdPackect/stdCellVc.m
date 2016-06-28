@@ -20,7 +20,7 @@
         CGFloat lblWidth=titleStr.length*22;
         _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(45, (cellHeight-lblHeigh)/2, lblWidth, lblHeigh)];
         
-        [_titleLable setFont:[UIFont systemFontOfSize:15]];
+        [_titleLable setFont:[UIFont systemFontOfSize:13]];
        
 
         
@@ -28,7 +28,7 @@
         
         lblWidth=txtStr.length*20;
         _txtLable = [[UILabel alloc] initWithFrame:CGRectMake(45+size.width+5, (cellHeight-lblHeigh)/2, lblWidth, lblHeigh)];
-         [_txtLable setFont:[UIFont systemFontOfSize:15]];
+         [_txtLable setFont:[UIFont systemFontOfSize:13]];
         
         _iconImg=[[UIImageView alloc]initWithFrame:CGRectMake(15, (cellHeight-20)/2, 20, 20)];
         _lookImg=[[UIImageView alloc]initWithFrame:CGRectMake(cellWidth-30, (cellHeight-20)/2, 12, 20)];

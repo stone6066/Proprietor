@@ -19,13 +19,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class stdCallBtn;
 @interface RATableViewCell : UITableViewCell
 
 @property (nonatomic, copy) void (^additionButtonTapAction)(id sender);
 @property (nonatomic) BOOL additionButtonHidden;
-
-- (void)setupWithTitle:(NSString *)title detailText:(NSString *)detailText level:(NSInteger)level additionButtonHidden:(BOOL)additionButtonHidden iocnName:(NSString*)namestr;
+@property (nonatomic,strong) stdCallBtn* TitleLbl;
+- (void)setupWithTitle:(NSString *)title detailText:(NSString *)detailText level:(NSInteger)level additionButtonHidden:(BOOL)additionButtonHidden iocnName:(NSString*)namestr isPhone:(NSInteger)isphone;
 - (void)setAdditionButtonHidden:(BOOL)additionButtonHidden animated:(BOOL)animated;
 
 @end

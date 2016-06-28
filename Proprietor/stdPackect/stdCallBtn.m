@@ -36,6 +36,11 @@
 -(void)clickMybtn{
     NSString*mystring =_titleLable.text;
     
+    NSRange range = [mystring rangeOfString:@"："];//匹配得到的下标
+    if (range.location>0) {
+        mystring = [mystring substringFromIndex:range.location+1];//截取范围类的字符串
+    }
+    
     UIAlertView *myalert=[[UIAlertView alloc]initWithTitle:mystring message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
     [myalert show];
 
