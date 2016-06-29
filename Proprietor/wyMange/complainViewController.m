@@ -118,9 +118,13 @@
     [_tableDataSource removeAllObjects];
     if (sender.tag==0) {//未受理
         _listType=0;
+        _addReport.hidden=NO;
+        _pageindex=1;
         [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId typeStr:_listType pageNo:_pageindex];    }
     else{
         _listType=1;
+        _addReport.hidden=YES;
+        _pageindex=1;
         [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId typeStr:_listType pageNo:_pageindex];
         
     }
@@ -212,7 +216,7 @@ static NSString * const MarketCellId = @"repairTableCell";
     //    // 将数据视图框架模型(该模型中包含了数据模型)赋值给Cell，
     complainListModel *dm=_tableDataSource[indexPath.item];
     [cell showUiComplainCell:dm];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
     
@@ -241,8 +245,6 @@ static NSString * const MarketCellId = @"repairTableCell";
     NSDictionary *paramDict = @{
                                 @"ut":@"indexVilliageGoods",
                                 };
- //   http://192.168.0.21:8080/propies/complaint/notaccept?communityId=6&page=1&pagesize=20
-    //http://192.168.0.21:8080/propies/complaint/notaccept?communityId=6&page=1&pagesize=20
      NSString *urlstr=@"";
     if (strTmp==0) {
         urlstr=[NSString stringWithFormat:@"%@%@%@%@%ld%@",BaseUrl,@"propies/complaint/notaccept?ownerId=",uid,@"&page=",(long)pagenum,@"&pagesize=20"];

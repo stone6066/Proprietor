@@ -11,7 +11,7 @@
 #import "ListTableViewCell.h"
 #import "baoxiuModel.h"
 #import "addRepairViewController.h"
-
+#import "mendDetailViewController.h"
 @interface repairViewController ()
 {
     NSMutableArray *lblArr;
@@ -35,7 +35,7 @@
     _tableDataSource=[[NSMutableArray alloc]init];
      NSArray *arrtitle=[[NSArray alloc]initWithObjects:@"未受理报修", @"已受理报修",nil];
     [self loadTabbar:arrtitle selectedindex:0];
-    
+    [self addReportBtn];
     // Do any additional setup after loading the view.
 }
 
@@ -44,6 +44,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)viewWillAppear:(BOOL)animated{
+    _pageindex=1;
+    _listType=0;
     [self loadTableView];
 }
 //自定义底部tabbar
@@ -116,11 +118,13 @@
     if (sender.tag==0) {//未受理
         _listType=0;
         _pageindex=1;
+        _addReport.hidden=NO;
         [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
             }
     else{
         _listType=1;
         _pageindex=1;
+        _addReport.hidden=YES;
         [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
     }
     NSLog(@"%ld",sender.tag);
@@ -196,7 +200,7 @@ static NSString * const MarketCellId = @"repairTableCell";
     }];
     
     
-    [self addReportBtn];
+    //[self addReportBtn];
 
 }
 #pragma mark table delegate
@@ -224,15 +228,13 @@ static NSString * const MarketCellId = @"repairTableCell";
     return 40;//餐企商超
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    ListTableViewCell *svc =(ListTableViewCell*)[self.TableView cellForRowAtIndexPath:indexPath];
-//    MarkectDeal *dm= [svc praseModelWithCell:svc];
-//    ListTableViewCell *shortCutView=[[DetailMarketViewController alloc]init];
-//    shortCutView.hidesBottomBarWhenPushed=YES;
-//    shortCutView.navigationItem.hidesBackButton=YES;
-//    
-//    [shortCutView setMarkectData:dm];
-//    shortCutView.view.backgroundColor = [UIColor whiteColor];
-//    [self.navigationController pushViewController:shortCutView animated:YES];
+    ListTableViewCell *svc =(ListTableViewCell*)[self.TableView cellForRowAtIndexPath:indexPath];
+    baoxiuModel *dm= [svc praseBaoxiuData:svc];
+    
+    mendDetailViewController *mendVc=[[mendDetailViewController alloc]init];
+    [mendVc setMendId:dm.mendId];
+    //noticeVc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:mendVc animated:NO];
     
 }
 

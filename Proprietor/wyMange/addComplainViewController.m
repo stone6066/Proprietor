@@ -9,6 +9,7 @@
 #import "addComplainViewController.h"
 #import "PublicDefine.h"
 #import "complainTypeModel.h"
+#import "stdPubFunc.h"
 
 @interface addComplainViewController ()<UITextFieldDelegate>
 {
@@ -168,11 +169,30 @@
     
 }
 -(void)stdAddClick{
-//    addRepairViewController *addView=[[addRepairViewController alloc]init];
-//    [self.navigationController pushViewController:addView animated:NO];
-    [self addComplainToSrv];
+
+    if ([self checkAddState]) {
+        [self addComplainToSrv];
+    }
+    else{
+        [stdPubFunc stdShowMessage:@"信息不完整，请完善后上传"];
+    }
+
+    
+    
     NSLog(@"提交投诉");
 }
+
+-(BOOL)checkAddState{
+    if ([_repairType.text isEqualToString:@"投诉类型"]) {
+        return NO;
+    }
+    if ([_repaitText.text isEqualToString:@"投诉内容"]) {
+        return NO;
+    }
+   
+    return YES;
+}
+
 -(void)textfieldRecognizer{
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
@@ -321,6 +341,7 @@
   
     NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies/complaint/complaintadd?complaintTypeId=",compainData.complaintTypeId,@"&complaintContent=",_repaitText.text,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId];
     NSLog(@"baoxiuurlstr:%@",urlstr);
+    urlstr = [urlstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}

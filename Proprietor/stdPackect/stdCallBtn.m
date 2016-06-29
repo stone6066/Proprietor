@@ -37,7 +37,7 @@
     NSString*mystring =_titleLable.text;
     
     NSRange range = [mystring rangeOfString:@"："];//匹配得到的下标
-    if (range.location>0) {
+    if (range.location != NSNotFound) {
         mystring = [mystring substringFromIndex:range.location+1];//截取范围类的字符串
     }
     
@@ -53,8 +53,8 @@
             
         }break;
         case 1:{//呼叫
-           // NSString * telStr=[NSString stringWithFormat:@"%@%@",@"tel://",alertView.title];
-            NSString * telStr=alertView.title;
+            NSString * telStr=[NSString stringWithFormat:@"%@%@",@"tel://",alertView.title];
+            //NSString * telStr=alertView.title;
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]];
         }break;
             

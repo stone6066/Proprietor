@@ -143,7 +143,7 @@
      */
     
     [self addChildViewController:newController];
-    [self transitionFromViewController:oldController toViewController:newController duration:0.01 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
+    [self transitionFromViewController:oldController toViewController:newController duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
         
         if (finished) {
             

@@ -11,19 +11,28 @@
 #import "personInfoMode.h"
 #import "RADataObject.h"
 #import "RATableViewCell.h"
-@interface feeNeedViewController ()<RATreeViewDelegate, RATreeViewDataSource>
+#import "feeModel.h"
 
+@interface feeNeedViewController ()<RATreeViewDelegate, RATreeViewDataSource>
+{
+    NSMutableArray *_tableDataSource;
+}
 @end
 
 @implementation feeNeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tableDataSource=[[NSMutableArray alloc]init];
+    _RaData=[[NSMutableArray alloc]init];
     self.view.backgroundColor=MyGrayColor;
     [self loadTopNav];
-    [self loadFeeNeed];
+    //[self loadFeeNeed];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -54,9 +63,7 @@
 }
 
 -(void)loadFeeNeed{
-    [self loadData];
-    
-    
+   
     RATreeView *treeView = [[RATreeView alloc] initWithFrame:CGRectMake(0, TopSeachHigh, fDeviceWidth, fDeviceHeight-TopSeachHigh)];
     
     treeView.delegate = self;
@@ -97,27 +104,22 @@
 
 - (void)loadData
 {
-    RADataObject *phone1 = [RADataObject dataObjectWithName:@"电话：13798098876" children:nil];
-    RADataObject *phone2 = [RADataObject dataObjectWithName:@"出生日期：1989-09-08" children:nil];
-    RADataObject *phone3 = [RADataObject dataObjectWithName:@"单位：阿里巴巴（中国）投资股份有限公司" children:nil];
-    RADataObject *phone4 = [RADataObject dataObjectWithName:@"与业主关系：夫妻" children:nil];
+    [_RaData removeAllObjects];
+    for (feeModel *feeObj in _tableDataSource) {
+        
+        RADataObject *Raobj1 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"上期欠款：",feeObj.shangqiQK] children:nil];
+        RADataObject *Raobj2 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"上期付款：",feeObj.shangqiFK] children:nil];
+        RADataObject *Raobj3 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"本期结算：",feeObj.benqiJS] children:nil];
+        RADataObject *Raobj4 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"本期付款：",feeObj.benqiFK] children:nil];
+        RADataObject *Raobj5 = [RADataObject dataObjectWithName:[NSString stringWithFormat:@"%@%@",@"本期合算：",feeObj.benqiHS] children:nil];
+        
+        RADataObject *Raobj = [RADataObject dataObjectWithName:ApplicationDelegate.myLoginInfo.communityName children:[NSArray arrayWithObjects:Raobj1, Raobj2, Raobj3,Raobj4,Raobj5,nil]];
+        [_RaData addObject:Raobj];
+    }
     
-    RADataObject *phone = [RADataObject dataObjectWithName:@"刘伟"
-                                                  children:[NSArray arrayWithObjects:phone1, phone2, phone3, phone4, nil]];
-    
-    
-    
-    RADataObject *computer1 = [RADataObject dataObjectWithName:@"电话：13798098876"children:nil];
-    RADataObject *computer2 = [RADataObject dataObjectWithName:@"出生日期：1989-09-08" children:nil];
-    RADataObject *computer3 = [RADataObject dataObjectWithName:@"单位：阿里巴巴（中国）投资股份有限公司" children:nil];
-    RADataObject *computer4 = [RADataObject dataObjectWithName:@"与业主关系：父子" children:nil];
-    RADataObject *computer = [RADataObject dataObjectWithName:@"马航"
-                                                     children:[NSArray arrayWithObjects:computer1, computer2, computer3,computer4, nil]];
-    
-    
-    self.data = [NSArray arrayWithObjects:phone, computer,  nil];
-    
+    [self loadFeeNeed];
 }
+
 
 #pragma mark TreeView Delegate methods
 
@@ -153,10 +155,10 @@
     NSInteger index = 0;
     
     if (parent == nil) {
-        index = [self.data indexOfObject:item];
-        NSMutableArray *children = [self.data mutableCopy];
+        index = [self.RaData indexOfObject:item];
+        NSMutableArray *children = [self.RaData mutableCopy];
         [children removeObject:item];
-        self.data = [children copy];
+        self.RaData = [children copy];
         
     } else {
         index = [parent.children indexOfObject:item];
@@ -167,6 +169,16 @@
     if (parent) {
         [self.treeView reloadRowsForItems:@[parent] withRowAnimation:RATreeViewRowAnimationNone];
     }
+}
+
+
+-(void)treeView:(RATreeView *)treeView didEndEditingRowForItem:(id)item
+{
+    //展开成员列表
+    [self.treeView expandRowForItem:item];
+    NSLog(@"DidEnditing.....");
+    
+    
 }
 
 #pragma mark TreeView Data Source
@@ -183,7 +195,7 @@
     RATableViewCell *cell = [self.treeView dequeueReusableCellWithIdentifier:NSStringFromClass([RATableViewCell class])];
     NSString *iconview;
     if (level==0) {
-        iconview=@"contact";
+        iconview=@"fee";
     }
     else
         iconview=@"verticalLine";
@@ -205,10 +217,14 @@
     return cell;
 }
 
+
+
+
+
 - (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item
 {
     if (item == nil) {
-        return [self.data count];
+        return [self.RaData count];
     }
     
     RADataObject *data = item;
@@ -219,11 +235,60 @@
 {
     RADataObject *data = item;
     if (item == nil) {
-        return [self.data objectAtIndex:index];
+        return [self.RaData objectAtIndex:index];
     }
     
     return data.children[index];
 }
 
-
+-(void)loadTableData:(NSString*)uid {
+    [SVProgressHUD showWithStatus:k_Status_Load];
+    NSDictionary *paramDict = @{
+                                @"ut":@"indexVilliageGoods",
+                                };
+    //http://192.168.0.21:8080/propies/owner/feeinfo?ownerId=3
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@",BaseUrl,@"propies/owner/feeinfo?ownerId=",uid];
+    
+    NSLog(@"roomstr:%@",urlstr);
+    [ApplicationDelegate.httpManager POST:urlstr
+                               parameters:paramDict
+                                 progress:^(NSProgress * _Nonnull uploadProgress) {}
+                                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                      //http请求状态
+                                      if (task.state == NSURLSessionTaskStateCompleted) {
+                                          NSError* error;
+                                          NSDictionary* jsonDic = [NSJSONSerialization
+                                                                   JSONObjectWithData:responseObject
+                                                                   options:kNilOptions
+                                                                   error:&error];
+                                          //NSLog(@"数据：%@",jsonDic);
+                                          NSString *suc=[jsonDic objectForKey:@"result"];
+                                          
+                                          //
+                                          if ([suc isEqualToString:@"true"]) {
+                                              //成功
+                                              
+                                              [SVProgressHUD dismiss];
+                                              feeModel *SM=[[feeModel alloc]init];
+                                              _tableDataSource=[SM asignModelWithDict:jsonDic];
+                                              [self loadData];
+                                              
+                                          } else {
+                                              //失败
+                                              [SVProgressHUD showErrorWithStatus:k_Error_WebViewError];
+                                              
+                                          }
+                                          
+                                      } else {
+                                          [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                          
+                                      }
+                                      
+                                  } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                      //请求异常
+                                      [SVProgressHUD showErrorWithStatus:k_Error_Network];
+                                      
+                                  }];
+    
+}
 @end

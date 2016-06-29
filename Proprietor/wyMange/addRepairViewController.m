@@ -10,6 +10,8 @@
 #import "PublicDefine.h"
 #import "mendTypeModel.h"
 #import "mendStateModel.h"
+#import "stdPubFunc.h"
+
 @interface addRepairViewController ()<UITextFieldDelegate>
 {
     NSMutableArray *pickerArr;
@@ -221,10 +223,29 @@
     
 }
 -(void)stdAddClick{
-//    addRepairViewController *addView=[[addRepairViewController alloc]init];
-//    [self.navigationController pushViewController:addView animated:NO];
-    [self addMendToSrv];
+    if ([self checkAddState]) {
+        [self addMendToSrv];
+    }
+    else{
+    [stdPubFunc stdShowMessage:@"信息不完整，请完善后上传"];
+    }
+    
     NSLog(@"提交报修");
+}
+-(BOOL)checkAddState{
+    if ([_repairType.text isEqualToString:@"报修类型"]) {
+        return NO;
+    }
+    if ([_repairState.text isEqualToString:@"紧急程度"]) {
+        return NO;
+    }
+    if (_repairTitle.text.length<1) {
+        return NO;
+    }
+    if (_repaitText.text.length<1) {
+        return NO;
+    }
+    return YES;
 }
 -(void)textfieldRecognizer{
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
@@ -401,6 +422,7 @@
  // http://192.168.0.21:8080/propies/mend/mendadd?mendType=1&mendLevel=1&communityId=6&roomsId=1
     NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies//mend/mendadd?mendType=",mendTypeData.mendTypeId,@"&mendLevel=",mendStateData.mendLevelId,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId,@"&mendTitle=",_repairTitle.text,@"&mendDesc=",_repaitText.text,@"&phoneNumber=",ApplicationDelegate.myLoginInfo.ownerPhone,@"&deleteStstus=0"];
     NSLog(@"addbaoxiustr:%@",urlstr);
+    urlstr = [urlstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}

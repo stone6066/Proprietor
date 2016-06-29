@@ -10,6 +10,7 @@
 #import "PublicDefine.h"
 #import "ListTableViewCell.h"
 #import "repairTableModel.h"
+#import "noticeDetailViewController.h"
 
 @interface noticeViewController ()
 {
@@ -112,15 +113,13 @@ static NSString * const MarketCellId = @"repairTableCell";
     return 40;//餐企商超
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    ListTableViewCell *svc =(ListTableViewCell*)[self.TableView cellForRowAtIndexPath:indexPath];
-    //    MarkectDeal *dm= [svc praseModelWithCell:svc];
-    //    ListTableViewCell *shortCutView=[[DetailMarketViewController alloc]init];
-    //    shortCutView.hidesBottomBarWhenPushed=YES;
-    //    shortCutView.navigationItem.hidesBackButton=YES;
-    //
-    //    [shortCutView setMarkectData:dm];
-    //    shortCutView.view.backgroundColor = [UIColor whiteColor];
-    //    [self.navigationController pushViewController:shortCutView animated:YES];
+    ListTableViewCell *svc =(ListTableViewCell*)[self.TableView cellForRowAtIndexPath:indexPath];
+    repairTableModel *dm= [svc praseNoticeData:svc];
+    
+    noticeDetailViewController *noticeVc=[[noticeDetailViewController alloc]init];
+    [noticeVc setNoticeId:dm.noticeId];
+    //noticeVc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:noticeVc animated:NO];
     
 }
 

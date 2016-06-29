@@ -170,6 +170,10 @@
 		89EFB74B1D192E0D00B83BEF /* date.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB7481D192E0D00B83BEF /* date.png */; };
 		89EFB74C1D192E0D00B83BEF /* date@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB7491D192E0D00B83BEF /* date@2x.png */; };
 		89EFB74D1D192E0D00B83BEF /* date@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EFB74A1D192E0D00B83BEF /* date@3x.png */; };
+		89F97EF61D234AEC00A03FC1 /* feeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F97EF51D234AEC00A03FC1 /* feeModel.m */; };
+		89F97EF91D2357C200A03FC1 /* noticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F97EF81D2357C200A03FC1 /* noticeDetailViewController.m */; };
+		89F97EFC1D2368BA00A03FC1 /* mendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F97EFB1D2368BA00A03FC1 /* mendDetailViewController.m */; };
+		89F97EFF1D23A8AB00A03FC1 /* stdPubFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F97EFE1D23A8AB00A03FC1 /* stdPubFunc.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -396,6 +400,14 @@
 		89EFB7481D192E0D00B83BEF /* date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date.png; sourceTree = "<group>"; };
 		89EFB7491D192E0D00B83BEF /* date@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "date@2x.png"; sourceTree = "<group>"; };
 		89EFB74A1D192E0D00B83BEF /* date@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "date@3x.png"; sourceTree = "<group>"; };
+		89F97EF41D234AEC00A03FC1 /* feeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = feeModel.h; sourceTree = "<group>"; };
+		89F97EF51D234AEC00A03FC1 /* feeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = feeModel.m; sourceTree = "<group>"; };
+		89F97EF71D2357C200A03FC1 /* noticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noticeDetailViewController.h; sourceTree = "<group>"; };
+		89F97EF81D2357C200A03FC1 /* noticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = noticeDetailViewController.m; sourceTree = "<group>"; };
+		89F97EFA1D2368BA00A03FC1 /* mendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mendDetailViewController.h; sourceTree = "<group>"; };
+		89F97EFB1D2368BA00A03FC1 /* mendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mendDetailViewController.m; sourceTree = "<group>"; };
+		89F97EFD1D23A8AB00A03FC1 /* stdPubFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdPubFunc.h; sourceTree = "<group>"; };
+		89F97EFE1D23A8AB00A03FC1 /* stdPubFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stdPubFunc.m; sourceTree = "<group>"; };
 		96062EA74065A1B2CF80EB87 /* Pods-Proprietor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proprietor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Proprietor/Pods-Proprietor.release.xcconfig"; sourceTree = "<group>"; };
 		FF166672A1FD772A2A141078 /* Pods_Proprietor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Proprietor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -450,6 +462,10 @@
 				89D282B31D13C72700B91834 /* addRepairViewController.m */,
 				893356611D17B7A400B85B1C /* addComplainViewController.h */,
 				893356621D17B7A400B85B1C /* addComplainViewController.m */,
+				89F97EF71D2357C200A03FC1 /* noticeDetailViewController.h */,
+				89F97EF81D2357C200A03FC1 /* noticeDetailViewController.m */,
+				89F97EFA1D2368BA00A03FC1 /* mendDetailViewController.h */,
+				89F97EFB1D2368BA00A03FC1 /* mendDetailViewController.m */,
 			);
 			path = wyMange;
 			sourceTree = "<group>";
@@ -655,7 +671,6 @@
 				8930804E1D1286AD00960923 /* wyMange */,
 				895C34111D0E7ABF009F793D /* login */,
 				895C342E1D0E7DE0009F793D /* mainTab */,
-				895C34151D0E7CDC009F793D /* image */,
 				897B30171D050C8100218E4E /* PublicDefine.h */,
 				897B2FE41D0509B900218E4E /* AppDelegate.h */,
 				897B2FE51D0509B900218E4E /* AppDelegate.m */,
@@ -664,6 +679,7 @@
 				897B2FF01D0509B900218E4E /* Assets.xcassets */,
 				897B2FF51D0509B900218E4E /* Info.plist */,
 				897B2FED1D0509B900218E4E /* Proprietor.xcdatamodeld */,
+				895C34151D0E7CDC009F793D /* image */,
 				897B2FE11D0509B900218E4E /* Supporting Files */,
 			);
 			path = Proprietor;
@@ -748,6 +764,8 @@
 				89CFAE4F1D2261CA00C1EDFB /* carSeatModel.m */,
 				89CFAE511D226F1A00C1EDFB /* carRoomModel.h */,
 				89CFAE521D226F1A00C1EDFB /* carRoomModel.m */,
+				89F97EF41D234AEC00A03FC1 /* feeModel.h */,
+				89F97EF51D234AEC00A03FC1 /* feeModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -767,6 +785,8 @@
 		89EFB71D1D18D43C00B83BEF /* stdPackect */ = {
 			isa = PBXGroup;
 			children = (
+				89F97EFD1D23A8AB00A03FC1 /* stdPubFunc.h */,
+				89F97EFE1D23A8AB00A03FC1 /* stdPubFunc.m */,
 				89CFAE461D221F2B00C1EDFB /* NullSafe.m */,
 				89EFB71E1D18D43C00B83BEF /* stdCallBtn.h */,
 				89EFB71F1D18D43C00B83BEF /* stdCallBtn.m */,
@@ -1112,6 +1132,7 @@
 				89D282A51D139B4000B91834 /* repairTableModel.m in Sources */,
 				89D282A11D13817100B91834 /* ListTableViewCell.m in Sources */,
 				89CFAE4D1D2257A300C1EDFB /* ownerRoomModel.m in Sources */,
+				89F97EFC1D2368BA00A03FC1 /* mendDetailViewController.m in Sources */,
 				89CFAE411D2218BF00C1EDFB /* carRoomViewController.m in Sources */,
 				895C343A1D0E7F23009F793D /* WyMangerViewController.m in Sources */,
 				897B2FE61D0509B900218E4E /* AppDelegate.m in Sources */,
@@ -1119,8 +1140,11 @@
 				895C34371D0E7EEF009F793D /* HomeViewController.m in Sources */,
 				89CFAE531D226F1A00C1EDFB /* carRoomModel.m in Sources */,
 				890681B51D20F8DE000605EA /* complainTypeModel.m in Sources */,
+				89F97EFF1D23A8AB00A03FC1 /* stdPubFunc.m in Sources */,
 				89CFAE431D2218BF00C1EDFB /* feeNeedViewController.m in Sources */,
 				895C343D1D0E7F37009F793D /* ShopViewController.m in Sources */,
+				89F97EF91D2357C200A03FC1 /* noticeDetailViewController.m in Sources */,
+				89F97EF61D234AEC00A03FC1 /* feeModel.m in Sources */,
 				897B2FE31D0509B900218E4E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

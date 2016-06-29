@@ -31,23 +31,18 @@
         
         _titleLbl=[[UILabel alloc]initWithFrame:CGRectMake(30,0,CellWidth-30-55,35)];
         _titleLbl.font=[UIFont systemFontOfSize:13];
-//        [_titleLbl setLineBreakMode:NSLineBreakByWordWrapping];
-//        [_titleLbl setNumberOfLines:0];
         [self addSubview:_titleLbl];
         
         
         _timeLbl=[[UILabel alloc]initWithFrame:CGRectMake(fDeviceWidth-90,2,90,35)];
         _timeLbl.font=[UIFont systemFontOfSize:10];
-        //_timeLbl.backgroundColor=[UIColor yellowColor];
-        //        [_titleLbl setLineBreakMode:NSLineBreakByWordWrapping];
-        //        [_titleLbl setNumberOfLines:0];
+
         [self addSubview:_timeLbl];
         
         _titleImage=[[UIImageView alloc]initWithFrame:CGRectMake(8,10,15,15)];
-        //_titleImage.backgroundColor=[UIColor blueColor];
+
         [self addSubview:_titleImage];
-        //_titleImage
-        //_titleImage.image=[UIImage imageNamed:@"nshoul"];
+
         
     }
     return self;
@@ -78,5 +73,18 @@
     _titleImage.image=[UIImage imageNamed:@"nshoul"];
     _cellId=NModel.complaintId;
     //_noticeContent=NModel.noticeContent;
+}
+-(baoxiuModel*)praseBaoxiuData:(ListTableViewCell *)LVC{
+    baoxiuModel *RTM=[[baoxiuModel alloc]init];
+    RTM.mendId=LVC.cellId;
+    return RTM;
+
+}
+
+-(repairTableModel*)praseNoticeData:(ListTableViewCell *)LVC{
+    repairTableModel *RTM=[[repairTableModel alloc]init];
+    RTM.noticeId=LVC.cellId;
+    return RTM;
+    
 }
 @end

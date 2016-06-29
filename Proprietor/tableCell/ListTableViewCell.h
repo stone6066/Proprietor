@@ -19,4 +19,6 @@
 -(void)showUiNewsCell:(repairTableModel*)NModel;
 -(void)showUiBaoxiuCell:(baoxiuModel*)NModel;
 -(void)showUiComplainCell:(complainListModel*)NModel;
+-(repairTableModel*)praseNoticeData:(ListTableViewCell *)LVC;
+-(baoxiuModel*)praseBaoxiuData:(ListTableViewCell *)LVC;
 @end
