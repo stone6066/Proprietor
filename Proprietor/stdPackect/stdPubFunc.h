@@ -19,8 +19,12 @@
 
 +(NSString*)readUserName;
 
++(NSString*)readPassword;
+
 +(void)setIsLogin:(NSString*)islogin;
 
 +(NSString*)getIsLogin;
+
++(void)saveLoginInfo:(NSString*)usrname password:(NSString*)psw;
 
 @end

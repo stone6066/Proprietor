@@ -43,8 +43,6 @@
 }
 
 -(void)loadPickViewWithToolBar{
-//    typeArr=[[NSArray alloc]initWithObjects:@"电梯",@"煤气",@"水电",@"其他", nil];
-//    stateArr=[[NSArray alloc]initWithObjects:@"紧急",@"一般",@"不急",@"其他", nil];
     pickerArr=[[NSMutableArray alloc]init];
     self.pView=[[UIView alloc]initWithFrame:CGRectMake(0, fDeviceHeight-300, fDeviceWidth, 250)];
     self.pickerView=[[UIPickerView alloc]initWithFrame:CGRectMake(0, 40, fDeviceWidth, 210)];
@@ -420,7 +418,7 @@
                                 };
     
  // http://192.168.0.21:8080/propies/mend/mendadd?mendType=1&mendLevel=1&communityId=6&roomsId=1
-    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies//mend/mendadd?mendType=",mendTypeData.mendTypeId,@"&mendLevel=",mendStateData.mendLevelId,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId,@"&mendTitle=",_repairTitle.text,@"&mendDesc=",_repaitText.text,@"&phoneNumber=",ApplicationDelegate.myLoginInfo.ownerPhone,@"&deleteStstus=0"];
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies//mend/mendadd?mendType=",mendTypeData.mendTypeId,@"&mendLevel=",mendStateData.mendLevelId,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId,@"&mendTitle=",_repairTitle.text,@"&mendDesc=",_repaitText.text,@"&phoneNumber=",ApplicationDelegate.myLoginInfo.ownerPhone,@"&deleteStstus=0",@"&repairpeople=",ApplicationDelegate.myLoginInfo.ownerName];
     NSLog(@"addbaoxiustr:%@",urlstr);
     urlstr = [urlstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ApplicationDelegate.httpManager POST:urlstr

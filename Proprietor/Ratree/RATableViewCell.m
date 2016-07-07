@@ -69,13 +69,18 @@
     self.customTitleLabel.hidden=NO;
     
     if (isphone==0) {//电话号码
-        _TitleLbl=[[stdCallBtn alloc]initWithFrame:CGRectMake(left, 11, 245, 21)];
-        [_TitleLbl setLblText:title];
-        [self addSubview:_TitleLbl];
+        if (!_TitleLbl) {
+            _TitleLbl=[[stdCallBtn alloc]initWithFrame:CGRectMake(left, 11, 245, 21)];
+            [_TitleLbl setLblText:title];
+            [self addSubview:_TitleLbl];
+        }
+        _TitleLbl.hidden=NO;
         self.customTitleLabel.hidden=YES;
     }
     else
+    {
        _TitleLbl.hidden=YES;
+    }
     
     self.additionButtonHidden = additionButtonHidden;
   
@@ -114,6 +119,51 @@
         self.dropView.hidden=YES;
 }
 
+//- (void)setupWithTitleTel:(NSString *)title detailText:(NSString *)detailText level:(NSInteger)level additionButtonHidden:(BOOL)additionButtonHidden iocnName:(NSString*)namestr isPhone:(NSInteger)isphone
+//{
+//    
+//    CGFloat left ;
+//    if (level==0) {
+//        left = 50 + 20 * level;
+//    }
+//    else
+//        left = 25 + 20 * level;
+//    if (!_TitleLbl) {
+//        _TitleLbl=[[stdCallBtn alloc]initWithFrame:CGRectMake(left, 11, 245, 21)];
+//    }
+//    
+//    [_TitleLbl setLblText:title];
+//    [self addSubview:_TitleLbl];
+// 
+//    self.additionButtonHidden = additionButtonHidden;
+//     self.customTitleLabel.hidden=YES;
+//    if (level == 0) {
+//        self.detailTextLabel.textColor = [UIColor blackColor];
+//    }
+//    self.backgroundColor = UIColorFromRGB(0xF7F7F7);
+//    
+//    
+//    
+//    self.cellIcon.image=[UIImage imageNamed:namestr];
+//    left = 20 + 20 * level;
+//    if (level==0) {
+//        self.cellIcon.frame=CGRectMake(left, 10, 20, 20);
+//    }
+//    else
+//        self.cellIcon.frame=CGRectMake(left, 15, 2, 13);
+//    
+//    
+//    
+//    
+//    left = fDeviceWidth-30;
+//    self.dropView.frame=CGRectMake(left, 15, 20, 10);
+//    
+//    if (level==0) {
+//        self.dropView.hidden=NO;
+//    }
+//    else
+//        self.dropView.hidden=YES;
+//}
 
 #pragma mark - Properties
 

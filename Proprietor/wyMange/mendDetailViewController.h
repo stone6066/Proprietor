@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class RatingBar;
 
 @interface mendDetailViewController : UIViewController
 @property(nonatomic,copy)NSString * mendId;
+@property(nonatomic,strong)RatingBar * raBar;
+@property(nonatomic,assign)NSInteger  lType;
 @end

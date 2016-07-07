@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "PublicDefine.h"
 #import "loginInfo.h"
-
+#import "stdPubFunc.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @end
@@ -64,7 +64,8 @@
     
     [self.view addSubview:_UsrTxtF];
     [self.view addSubview:_PassTxtF];
-    
+    _UsrTxtF.text=[stdPubFunc readUserMsg];
+    _PassTxtF.text=[stdPubFunc readPassword];
     UIImageView *logobtnImg=[[UIImageView alloc]initWithFrame:CGRectMake(10, fDeviceHeight/2+50, fDeviceWidth-20, 50)];
     logobtnImg.image=[UIImage imageNamed:@"logBtn"];
     [self.view addSubview:logobtnImg];
@@ -79,12 +80,12 @@
 }
 -(void)clickloginbtn{
     //[self loginSuccPro];
-//    if ( _UsrTxtF.text.length<1) {
-//        return;
-//    }
-//    if ( _PassTxtF.text.length<1) {
-//        return;
-//    }
+    if ( _UsrTxtF.text.length<1) {
+        return;
+    }
+    if ( _PassTxtF.text.length<1) {
+        return;
+    }
     [self loginNetFuc:_UsrTxtF.text passWord:_PassTxtF.text];
 }
 
@@ -111,12 +112,10 @@
     [SVProgressHUD showWithStatus:k_Status_Load];
     //http://localhost:8080/propies/login/owner?ownerLogin=admin1&ownerPwd=aaaaaa
     NSDictionary *paramDict = @{
-                                @"ut":@"indexVilliageGoods",
-                                @"pageNo":[NSString stringWithFormat:@"%d",1],
-                                @"pageSize":[NSString stringWithFormat:@"%d",20]
+                                @"ut":@"indexVilliageGoods"
                                 };
-    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@",BaseUrl,@"propies/login/owner?ownerLogin=",@"13777777777",@"&ownerPwd=",@"aaaaaa"];
-    //NSLog(@"urlstr:%@",urlstr);
+    NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@",BaseUrl,@"propies/login/owner?ownerLogin=",usr,@"&ownerPwd=",psw];
+    NSLog(@"loginstr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}
@@ -137,6 +136,7 @@
                                               loginInfo *LGIN=[[loginInfo alloc]init];
                                               ApplicationDelegate.myLoginInfo=[LGIN asignInfoWithDict:jsonDic];
                                               [SVProgressHUD dismiss];
+                                              [stdPubFunc saveLoginInfo:_UsrTxtF.text password:_PassTxtF.text];
                                               [self loginSuccPro];
                                               
                                           } else {

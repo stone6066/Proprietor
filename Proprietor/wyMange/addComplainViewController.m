@@ -283,7 +283,7 @@
     //http://192.168.0.21:8080/propies/complaint/type
     NSString *urlstr=[NSString stringWithFormat:@"%@%@",BaseUrl,@"propies/complaint/type"];
   
-    NSLog(@"baoxiuurlstr:%@",urlstr);
+    NSLog(@"complaintypeurlstr:%@",urlstr);
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict
                                  progress:^(NSProgress * _Nonnull uploadProgress) {}
@@ -340,7 +340,7 @@
     
   
     NSString *urlstr=[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@",BaseUrl,@"propies/complaint/complaintadd?complaintTypeId=",compainData.complaintTypeId,@"&complaintContent=",_repaitText.text,@"&ownerId=",ApplicationDelegate.myLoginInfo.ownerId,@"&communityId=",ApplicationDelegate.myLoginInfo.communityId];
-    NSLog(@"baoxiuurlstr:%@",urlstr);
+    NSLog(@"complainurlstrurlstr:%@",urlstr);
     urlstr = [urlstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ApplicationDelegate.httpManager POST:urlstr
                                parameters:paramDict

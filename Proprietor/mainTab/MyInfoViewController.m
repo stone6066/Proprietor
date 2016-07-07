@@ -69,27 +69,27 @@
     stdCellVc *personInfo=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"personInfo" titleName:@"个人信息" txtName:@"" lookImg:@"rightArrow" sendid:1];
     [self.view addSubview:personInfo];
     
-    firstCG=CGRectMake(0, TopSeachHigh+100, fDeviceWidth, 50);
+    firstCG=CGRectMake(0, TopSeachHigh+30+51, fDeviceWidth, 50);
     stdCellVc *room=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"room" titleName:@"房屋信息" txtName:@"" lookImg:@"rightArrow" sendid:2];
     [self.view addSubview:room];
 
-    firstCG=CGRectMake(0, TopSeachHigh+151, fDeviceWidth, 50);
+    firstCG=CGRectMake(0, TopSeachHigh+30+51*2, fDeviceWidth, 50);
     stdCellVc *carRoom=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"carRoom" titleName:@"车库信息" txtName:@"" lookImg:@"rightArrow" sendid:3];
     [self.view addSubview:carRoom];
 
-     firstCG=CGRectMake(0, TopSeachHigh+202, fDeviceWidth, 50);
+     firstCG=CGRectMake(0, TopSeachHigh+30+51*3, fDeviceWidth, 50);
     stdCellVc *carSeat=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"carSeat" titleName:@"车位信息" txtName:@"" lookImg:@"rightArrow" sendid:4];
     [self.view addSubview:carSeat];
     
-    firstCG=CGRectMake(0, TopSeachHigh+272, fDeviceWidth, 50);
+    firstCG=CGRectMake(0, TopSeachHigh+30+51*4, fDeviceWidth, 50);
     stdCellVc *qianFee=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"fee" titleName:@"欠费信息" txtName:@"" lookImg:@"rightArrow" sendid:5];
     [self.view addSubview:qianFee];
     
-    firstCG=CGRectMake(0, TopSeachHigh+342, fDeviceWidth, 50);
-    stdCellVc *about=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"about" titleName:@"关于物业通" txtName:@"" lookImg:@"rightArrow" sendid:6];
+    firstCG=CGRectMake(0, TopSeachHigh+30+51*5, fDeviceWidth, 50);
+    stdCellVc *about=[[stdCellVc alloc]initWithFrame:firstCG iocnImg:@"about" titleName:@"关于物业通 V1.0" txtName:@"" lookImg:@"rightArrow" sendid:6];
     [self.view addSubview:about];
 
-
+    [self addReportBtn];
     personInfo.stdDelegate=self;
     room.stdDelegate=self;
     carRoom.stdDelegate=self;
@@ -97,6 +97,34 @@
     qianFee.stdDelegate=self;
     about.stdDelegate=self;
 }
+
+-(void)addReportBtn{
+    CGFloat yy=fDeviceHeight-MainTabbarHeight-60;
+    UIButton *addReport=[[UIButton alloc]initWithFrame:CGRectMake(10, yy, fDeviceWidth-20, 40)];
+    [addReport setTitle:@"退出登录"forState:UIControlStateNormal];// 添加文字
+    addReport.backgroundColor=topSearchBgdColor;
+    [addReport.layer setMasksToBounds:YES];
+    [addReport.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
+    //[_addReport.layer setBorderWidth:1.0]; //边框宽度
+    [addReport addTarget:self action:@selector(stdAddClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addReport];
+    
+}
+-(void)stdAddClick{
+    ApplicationDelegate.isLogin=NO;
+    [ApplicationDelegate.tabBarViewController setSelectedIndex:0];
+    [self hideTabBar];
+    NSLog(@"提交报修");
+}
+
+- (void)hideTabBar {
+    if (self.tabBarController.tabBar.hidden == YES) {
+        return;
+    }
+    self.tabBarController.tabBar.hidden = YES;
+    
+}
+
 -(void)pushPersonVC{
     personInfoViewController *personVc=[[personInfoViewController alloc]init];
     [self.navigationController pushViewController:personVc animated:NO];

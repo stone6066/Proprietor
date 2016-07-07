@@ -14,6 +14,7 @@
 #import "ListTableViewCell.h"
 #import "repairTableModel.h"
 #import "noticeDetailViewController.h"
+#import "webViewController.h"
 
 @interface HomeViewController ()
 {
@@ -59,16 +60,23 @@
         LoginViewController *vc = [[LoginViewController alloc]init];
         vc.loginSuccBlock = ^(LoginViewController *aqrvc){
             NSLog(@"login_suc");
+            [self showTabBar];
             [self loadTableData:ApplicationDelegate.myLoginInfo.communityId  pageNo:1];
         };
         self.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:NO];
         self.hidesBottomBarWhenPushed = NO;
     }
-    
+}
+- (void)showTabBar
+{
+    if (self.tabBarController.tabBar.hidden == NO)
+    {
+        return;
+    }
+    self.tabBarController.tabBar.hidden = NO;
     
 }
-
 -(void)loadTopNav{
     UIView *TopView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, fDeviceWidth, TopSeachHigh)];
     TopView.backgroundColor=topSearchBgdColor;//[UIColor redColor];
@@ -78,14 +86,6 @@
     [topLbl setTextColor:[UIColor whiteColor]];
     
     [TopView addSubview:topLbl];
-//    UIImageView *backimg=[[UIImageView alloc]initWithFrame:CGRectMake(8, 24, 60, 24)];
-//    backimg.image=[UIImage imageNamed:@"bar_back"];
-//    [TopView addSubview:backimg];
-//    //返回按钮
-//    back = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [back setFrame:CGRectMake(0, 22, 70, 42)];
-//    [back addTarget:self action:@selector(clickleftbtn) forControlEvents:UIControlEventTouchUpInside];
-//    [TopView addSubview:back];
     [self.view addSubview:TopView];
 }
 
@@ -107,6 +107,9 @@
     [self loadNoticeTable];
 }
 -(void)adClickBtn{
+    webViewController *webpageVc=[[webViewController alloc]init];
+    [webpageVc setWeburl:@"http://www.tao-yx.com/mobile/list/4678"];
+    [self.navigationController pushViewController:webpageVc animated:NO];
     NSLog(@"adClickBtn");
 }
 static NSString * const HomeCellId = @"homeTableCell";

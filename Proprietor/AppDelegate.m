@@ -37,10 +37,7 @@
 }
 
 -(void)enterMainWindow{
-//    LoginViewController *vc=[[LoginViewController alloc]init];
-//    UINavigationController *navRoot=[[UINavigationController alloc]initWithRootViewController:vc];
-//    
-//    [self.window setRootViewController:navRoot];
+
     self.tabBarViewController = [[UITabBarController alloc]init];
     [self.window setRootViewController:self.tabBarViewController];
     StdRootController *stdRootV=[[StdRootController alloc]init];

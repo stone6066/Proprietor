@@ -45,9 +45,9 @@
 #define NSUserDefaultsNick @"userNickName"
 #define NSUserDefaultsUsers @"userName"
 #define NSUserIsLogin @"IsLogin"
-
+#define NSUserDefaultsPsw @"userPassword"
 //#define NetUrl @"http://shop.anquan365.org/nst/common.htm?"
-//#define MainUrl @"http://shop.anquan365.org/"
+#define MainUrl @"http://shop.anquan365.org/"
 #define MainToken @"tao-yx.com"
 #define BaseUrl @"http://192.168.0.21:8080/"
 #define BasePath @"mobile/interface/"

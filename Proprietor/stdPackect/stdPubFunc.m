@@ -59,11 +59,7 @@
     NSString * UserNick = [user objectForKey:NSUserDefaultsNick];
     return UserNick;
 }
-+(NSString*)readUserName{
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSString * UserName = [user objectForKey:NSUserDefaultsUsers];
-    return UserName;
-}
+
 +(void)setIsLogin:(NSString*)islogin{
     NSUserDefaults *myuser = [NSUserDefaults standardUserDefaults];
     [myuser setObject:islogin forKey:NSUserIsLogin];
@@ -73,5 +69,23 @@
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSString * islogin = [user objectForKey:NSUserIsLogin];
     return islogin;
+}
+
++(NSString*)readUserName{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString * UserName = [user objectForKey:NSUserDefaultsUsers];
+    return UserName;
+}
++(NSString*)readPassword{
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSString * psw = [user objectForKey:NSUserDefaultsPsw];
+    return psw;
+}
+
++(void)saveLoginInfo:(NSString*)usrname password:(NSString*)psw{
+    NSUserDefaults *myuser = [NSUserDefaults standardUserDefaults];
+    [myuser setObject:usrname forKey:NSUserDefaultsMsg];
+    [myuser setObject:psw forKey:NSUserDefaultsPsw];
+    [myuser synchronize];
 }
 @end

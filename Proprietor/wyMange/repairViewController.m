@@ -31,7 +31,8 @@
     viewArr=[[NSMutableArray alloc]init];
     lineArr=[[NSMutableArray alloc]init];
    
-    _pageindex=0;
+    _pageindex=1;
+    _listType=0;
     _tableDataSource=[[NSMutableArray alloc]init];
      NSArray *arrtitle=[[NSArray alloc]initWithObjects:@"未受理报修", @"已受理报修",nil];
     [self loadTabbar:arrtitle selectedindex:0];
@@ -45,7 +46,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     _pageindex=1;
-    _listType=0;
+    //_listType=0;
     [self loadTableView];
 }
 //自定义底部tabbar
@@ -167,7 +168,7 @@ static NSString * const MarketCellId = @"repairTableCell";
     [self.view addSubview:self.TableView];
     
     _pageindex=1;
-    _listType=0;
+//    _listType=0;
     [self loadTableData:ApplicationDelegate.myLoginInfo.ownerId pageNo:_pageindex];
     //[self loadTableData:@"uid" typeStr:_listType pageNo:_pageindex];
     
@@ -233,8 +234,13 @@ static NSString * const MarketCellId = @"repairTableCell";
     
     mendDetailViewController *mendVc=[[mendDetailViewController alloc]init];
     [mendVc setMendId:dm.mendId];
+    [mendVc setLType:_listType];
     //noticeVc.view.backgroundColor = [UIColor whiteColor];
+    mendVc.hidesBottomBarWhenPushed=YES;
+    mendVc.navigationItem.hidesBackButton=YES;
+    mendVc.view.backgroundColor = MyGrayColor;
     [self.navigationController pushViewController:mendVc animated:NO];
+
     
 }
 
